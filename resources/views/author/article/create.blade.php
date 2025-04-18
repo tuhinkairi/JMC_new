@@ -224,6 +224,18 @@
 
             <script>
 $(document).ready(function () {
+
+    // check the size of the file
+    const maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
+
+$('#file').on('change', function () {
+    const file = this.files[0];
+    console.log(file)
+    if (file && file.size > maxFileSize) {
+        alert("File size exceeds 5MB. Please upload a smaller file.");
+        this.value = ''; // Clear the input
+    }
+});
     $('form').submit(function (event) {
         const form = this;
 
