@@ -9,7 +9,30 @@
     <!-- Include page breadcrumb -->
     @include('admin.inc.breadcrumb')
     <!-- end page title -->
-
+    <!-- loading screen start -->
+            <style>
+        #loadingScreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #f8f9fa;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+         }
+    </style>
+            <div id="loadingScreen" style="display:none">
+    
+                <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-3 fw-medium">Please wait while we prepare your experience...</p>
+            </div>
+            <!-- loading screen end -->
               <form class="needs-validation" novalidate action="{{ URL::route('author.'.$url.'.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
@@ -189,10 +212,10 @@
                         <button type="submit" class="btn btn-blue upload_file waves-effect waves-light">Submit</button>
                     </div>
 
-                    <div id="loading" style="display: none;">
+                    <!-- <div id="loading" style="display: none;">
     <img src="{{ asset('frontend/img/loading.gif') }}" width="40px" height="40px" alt="Loading...">
-</div>
-
+</div> -->
+                    
                 </div>
 
               </form>
@@ -200,47 +223,55 @@
             <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
             <script>
-                $(document).ready(function () {
-                    // Disable submit button on form submission and show loading indicator
-                    //getting the loading file
-                    
-                    $('form').submit(function (event) {
-                        event.preventDefault()
-                        $("loadingScreen").show()
-                        $('button[type="submit"]').prop('disabled', true);
-                        //$('#loading').show();
-                        $("loadingScreen").hide()
-                        
-                    });
+$(document).ready(function () {
+    $('form').submit(function (event) {
+        const form = this;
 
-                    function updateImage() {
-                        let val = $('#journal').val();
-                        $("#show_image").empty();
-                        const terms = document.getElementById('terms');
-                        const termsimage = document.getElementById('termsimage');
-                        terms.style.display = 'block';
-                        termsimage.style.display = 'block';
+        if (!form.checkValidity()) {
+            // Let the browser handle validation UI
+            return;
+        }
 
-                        let images = {
-                            1: "{{ asset('/backend/images/ijire_image.png') }}",
-                            2: "{{ asset('/backend/images/Ijsreat_image.png') }}",
-                            3: "{{ asset('/backend/images/ijrtmr_image.png') }}",
-                            4: "{{ asset('/backend/images/Indjeee_image.png') }}",
-                            5: "{{ asset('/backend/images/indjece_image.png') }}",
-                            6: "{{ asset('/backend/images/Indjcst_image.png') }}"
-                        };
+        // Prevent default only after validation passes
+        event.preventDefault();
 
-                        if (images[val]) {
-                            $("#show_image").append(`<img src="${images[val]}" id="journal_cover_img" width="300px" height="400px">`);
-                        }
-                    }
+        // Show loading screen
+        document.getElementById('loadingScreen').style.display = 'flex';
 
-                    // Run on dropdown change
-                    $('#journal').change(updateImage);
+        // Disable submit to prevent duplicate submissions
+        $('button[type="submit"]').prop('disabled', true);
 
-                    // Run on page load for preselected value
-                    updateImage();
-                });
-            </script>
+        // Submit the form manually (if not using AJAX)
+        form.submit();
+    });
+
+    function updateImage() {
+        let val = $('#journal').val();
+        $("#show_image").empty();
+        const terms = document.getElementById('terms');
+        const termsimage = document.getElementById('termsimage');
+        terms.style.display = 'block';
+        termsimage.style.display = 'block';
+
+        let images = {
+            1: "{{ asset('/backend/images/ijire_image.png') }}",
+            2: "{{ asset('/backend/images/Ijsreat_image.png') }}",
+            3: "{{ asset('/backend/images/ijrtmr_image.png') }}",
+            4: "{{ asset('/backend/images/Indjeee_image.png') }}",
+            5: "{{ asset('/backend/images/indjece_image.png') }}",
+            6: "{{ asset('/backend/images/Indjcst_image.png') }}"
+        };
+
+        if (images[val]) {
+            $("#show_image").append(`<img src="${images[val]}" id="journal_cover_img" width="300px" height="400px">`);
+        }
+    }
+
+    // Bind dropdown and init on load
+    $('#journal').change(updateImage);
+    updateImage();
+});
+</script>
+
             @endsection
             {{-- <img src="{{ asset('/backend/images/ijire_image.png') }}" id="journal_cover_img" width="300px;" height="400px;"> --}}

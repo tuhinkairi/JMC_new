@@ -41,28 +41,7 @@
 
         <!-- Begin page -->
         <div id="wrapper">
-            <!-- loading section added-->
-            <div id="loadingScreen" style="display:none">
-            <style>
-    #loadingScreen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: #f8f9fa;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-  </style>
-                <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-                <p class="mt-3 fw-medium">Please wait while we prepare your experience...</p>
-            </div>
+            
             @auth
             <!-- ========== Left Sidebar Start ========== -->
             @if(Auth::user()->user_type == 'A')
