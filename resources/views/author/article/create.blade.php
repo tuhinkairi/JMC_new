@@ -27,8 +27,8 @@
     </style>
             <div id="loadingScreen" style="display:none">
     
-                <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
-                    <span class="visually-hidden">Loading...</span>
+                <div class="spinner-border text-primary flex items-center justify-center" role="status" style="width: 3rem; height: 3rem;">
+                <img src="{{ asset('frontend/img/loading.gif') }}" width="40px" height="40px" alt="Loading...">
                 </div>
                 <p class="mt-3 fw-medium">Please wait while we prepare your experience...</p>
             </div>
