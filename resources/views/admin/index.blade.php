@@ -30,7 +30,7 @@ td, th {
 
     @cannot('isStaff')
 
-    <div class="row">
+    <div class="row d-none d-lg-flex">
         <div class="col-xl-3 col-lg-6">
             <div class="card widget-flat bg-blue text-white rounded card-border shadow-sm">
                 <div class="card-body p-0">
@@ -602,9 +602,9 @@ td, th {
 
                 <div class="col-md-12">
                     <div class="ibox">
-                        <div class="ibox-title row col-12 py-2">
-                            <h4 class="col-4">Article List</h4>
-                            <div class="col-8 d-flex gap-4 items-center justify-content-end">
+                        <div class="ibox-title d-flex align-content-center justify-content-center justify-content-md-between py-2 flex-wrap">
+                            <h4 class="">Article List</h4>
+                            <div class="d-flex gap-4 items-center justify-content-end flex-fill">
 
                                 <a class="d-block mb-0" href="{{url('dashboard/author/faq')}}"><span class="btn btn-blue upload_file waves-effect waves-light" style="background-color:#8D0672;">Submission Guidelines</span></a>
                                 <a class="d-block ml-1" href="{{url('dashboard/author/addarticle')}}"><span class="btn btn-blue upload_file waves-effect waves-light" style="background: linear-gradient(to right, #F707F7, #FCE500); border: none; color: white; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background 0.3s ease;">New Submission</span></a>
