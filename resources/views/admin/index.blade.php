@@ -262,7 +262,7 @@ td, th {
                     <h4 class="header-title">Article List</h4>
 
                       <!-- Data Table Start -->
-                    <!-- <div class="" id="table">
+                    <!-- <div class="" id="table" style="overflow-x:auto;">
                         <table id="basic-datatable" class="table table-striped table-hover table-white nowrap dashboard_fix-table" style="width:100%">
                             <thead>
                                 <tr>
@@ -320,7 +320,7 @@ td, th {
 
 
 
-                    <div class="" id="table">
+                    <div class="" id="table" style="overflow-x:auto;">
                         <table id="basic-datatable" class="table table-striped table-hover table-white nowrap dashboard_fix-table" style="width:100%">
                             <thead>
                                 <tr>
@@ -421,7 +421,7 @@ td, th {
                     <h4 class="header-title">Article List</h4>
 
                     <!-- Data Table Start -->
-                    <div class="" id="table">
+                    <div class=""  id="table" style="overflow-x:auto;">
                         <table id="basic-datatable" class="table table-striped table-hover table-white nowrap dashboard_fix-table" style="width:100%">
                             <thead>
                                 <tr>
@@ -616,7 +616,7 @@ td, th {
                         </div>
 
                       <!-- Data Table Start -->
-                      <div class="pb-2">
+                      <div class="pb-2" style="overflow-x:auto;">
                         <table id="basic-datatable" class="table table-striped table-hover table-white nowrap">
                             <thead>
                                 <tr>
