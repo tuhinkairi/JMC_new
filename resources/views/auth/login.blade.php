@@ -27,24 +27,24 @@
             <center>
                 @if ($journal == 1)
                     <div><img src="{{ asset('/backend/images/ijire_image.png') }}" height="230" class="thumbnail"></div>
-                    <a href="{{ route('register') }}/?journal={{$journal}}" class="btn btn-blue d-block mw-50 mt-3 mb-1">Create a new account</a>
+                    <a href="{{ route('register') }}/?journal={{$journal}}" class="btn btn-blue d-block mt-3 mb-1" style="width: fit-content;">Create a new account</a>
                 @elseif ($journal == 2)
                     <div><img src="{{ asset('/backend/images/Ijsreat_image.png') }}" height="230" class="thumbnail"></div>
-                    <a href="{{ route('register') }}/?journal={{$journal}}" class="btn btn-blue d-block mw-50 mt-3 mb-1">Create a new account</a>
+                    <a href="{{ route('register') }}/?journal={{$journal}}" class="btn btn-blue d-block mt-3 mb-1" style="width: fit-content;">Create a new account</a>
                 @elseif ($journal == 3)
                     <div><img src="{{ asset('/backend/images/ijrtmr_image.png') }}" height="230" class="thumbnail"></div>
-                    <a href="{{ route('register') }}/?journal={{$journal}}" class="btn btn-blue d-block mw-50 mt-3 mb-1">Create a new account</a>
+                    <a href="{{ route('register') }}/?journal={{$journal}}" class="btn btn-blue d-block mt-3 mb-1" style="width: fit-content;">Create a new account</a>
                 @elseif ($journal == 4)
                     <div><img src="{{ asset('/backend/images/Indjeee_image.png') }}" height="230" class="thumbnail"></div>
-                    <a href="{{ route('register') }}/?journal={{$journal}}" class="btn btn-blue d-block mw-50 mt-3 mb-1">Create a new account</a>
+                    <a href="{{ route('register') }}/?journal={{$journal}}" class="btn btn-blue d-block mt-3 mb-1" style="width: fit-content;">Create a new account</a>
                 @elseif ($journal == 5)
                     <div><img src="{{ asset('/backend/images/indjece_image.png') }}" height="230" class="thumbnail"></div>
-                    <a href="{{ route('register') }}/?journal={{$journal}}" class="btn btn-blue d-block mw-50 mt-3 mb-1">Create a new account</a>
+                    <a href="{{ route('register') }}/?journal={{$journal}}" class="btn btn-blue d-block mt-3 mb-1" style="width: fit-content;">Create a new account</a>
                 @elseif ($journal == 6)
                     <div><img src="{{ asset('/backend/images/Indjcst_image.png') }}" height="230" class="thumbnail"></div>
-                    <a href="{{ route('register') }}/?journal={{$journal}}" class="btn btn-blue d-block mw-50 mt-3 mb-1">Create a new account</a>
+                    <a href="{{ route('register') }}/?journal={{$journal}}" class="btn btn-blue d-block mt-3 mb-1" style="width: fit-content;">Create a new account</a>
                 @else
-                    <div><img src="{{ asset('/backend/images/company_logo.png') }}" height="100" class="thumbnail"></div>
+                    <div style="box-sizing: border-box;"><img src="{{ asset('/backend/images/company_logo.png') }}" style="width: 100%; max-width: 300px;" class="thumbnail"></div>
                 @endif
             </center>
             <div class="info">
