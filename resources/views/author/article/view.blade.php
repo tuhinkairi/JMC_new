@@ -27,6 +27,7 @@
     background: #007bff !important;
     color: #fff !important;
 }
+
 </style>
 <div class="row">
     @if (session('alert'))
@@ -39,7 +40,7 @@
             alert('Review Form is Under Processing');
         </script>
 @endif
-    <div class="col-xl-12 col-lg-12">
+    <div class="col-xl-12 col-lg-12 position-relative">
         <div class="card-body p-0">
             <div class="px-3 pt-3">
                 <div class="card">
@@ -73,13 +74,12 @@
                     </div>
                     <div class="col-md-12">
                         <div class="ibox">
-                            <div class="ibox-content">
+                            <div class="ibox-content position-relative overflow-hidden">
                                 <p class="col-12"><strong>ID: </strong>{{$rows[0]->journal_short_form}}-0000{{ $rows[0]->id }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Title: </strong>{{$rows[0]->title}}</p>
                                 <hr>
                                 <!-- tour added -->
-                                <!-- ended added -->
 
-                                <div class="card-header pb-0 px-2 bg-light border-bottom-0">
+                                <div class="card-header pb-0 px-2 bg-light border-bottom-0 postion-relative">
                                     <ul class="nav nav-tabs col-20" id="nav-tab">
 
                                         <li class="nav-item">
@@ -105,8 +105,8 @@
                                             <a data-toggle="tab" class="nav-link" href="#acceptance"><i class="fa fa-check-circle"></i> Acceptance</a>
                                         </li>
 <!-- 3 -->
-                                        <li class="nav-item position-relative tour3">
-                                            <div class="tour_details p-2 border shadow position-absolute tour-container" style="z-index: 9999; bottom:3rem; min-width: 400px; border-radius: 20px;">
+                                        <li class="nav-item tour3">
+                                            <div class="tour_details p-2 border shadow position-absolute tour-container" style="z-index: 9999; border-radius: 20px; top:-8rem; height: fit-content; left:0;">
                                                 <strong>Copy Rights</strong>   
                                                 <p>
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
@@ -116,8 +116,8 @@
                                             <a data-toggle="tab" class="nav-link " href="#copyrights"><i class="fa fa-copyright"></i> Copy Rights</a>
                                         </li>
 <!-- 2 -->
-                                        <li class="nav-item position-relative tour2">
-                                            <div class="tour_details p-2 border shadow position-absolute tour-container" style="z-index: 9999; bottom:3rem; min-width: 400px; border-radius: 20px;">
+                                        <li class="nav-item tour2">
+                                            <div class="tour_details p-2 border shadow position-absolute tour-container" style="z-index: 9999; border-radius: 20px; top:-8rem; height: fit-content; left:0">
                                                 <strong>Profile</strong>   
                                                 <p>
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
@@ -127,8 +127,8 @@
                                             <a data-toggle="tab" class="nav-link " href="#profile"><i class="fa fa-copyright"></i> Profile</a>
                                         </li>
 <!-- 4 -->
-                                        <li class="nav-item position-relative tour4 ">
-                                            <div class="tour_details p-2 border shadow position-absolute tour-container" style="z-index: 9999; bottom:3rem; min-width: 400px; border-radius: 20px;">
+                                        <li class="nav-item tour4 ">
+                                            <div class="tour_details p-2 border shadow position-absolute tour-container" style="z-index: 9999; border-radius: 20px; top:-8rem; height: fit-content; left:0">
                                                 <strong>Payment</strong>   
                                                 <p>
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
@@ -139,8 +139,8 @@
                                         </li>
                                         <!-- 1 -->
 
-                                        <li class="nav-item position-relative tour1">
-                                            <div class="tour_details p-2 border shadow position-absolute tour-container" style="z-index: 9999; bottom:3rem; min-width: 400px; border-radius: 20px;">
+                                        <li class="nav-item tour1">
+                                            <div class="tour_details p-2 border shadow position-absolute tour-container" style="z-index: 9999; border-radius: 20px; top:-8rem; height: fit-content; left:0">
                                                 <strong>Final submission</strong>   
                                                 <p>
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
@@ -165,8 +165,8 @@
                                         </li> --}}
                                     </ul>
                                 </div>
-                                <div class="card-body p-2">
-                                    <div class="tab-content">
+                                <div class="card-body p-2 ">
+                                    <div class="tab-content" style="overflow-x: auto;">
                                         <div id="details" class="tab-pane ib-tab-box active">
                                             <div class="row">
                                                 <div class="col-md-12">
