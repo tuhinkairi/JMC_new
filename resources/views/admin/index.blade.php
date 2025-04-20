@@ -614,7 +614,7 @@ td, th {
 
                             <div class="clearfix"></div>
                         </div>
-
+ 
                       <!-- Data Table Start -->
                       <div class="pb-2" style="overflow-x:auto;">
                         <table id="basic-datatable" class="table table-striped table-hover table-white nowrap">
