@@ -22,6 +22,11 @@
   background-color: #007bff;
   color: #fff;
 }
+
+.tour-container{
+    background: #007bff !important;
+    color: #fff !important;
+}
 </style>
 <div class="row">
     @if (session('alert'))
@@ -71,8 +76,12 @@
                             <div class="ibox-content">
                                 <p class="col-12"><strong>ID: </strong>{{$rows[0]->journal_short_form}}-0000{{ $rows[0]->id }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Title: </strong>{{$rows[0]->title}}</p>
                                 <hr>
+                                <!-- tour added -->
+                                <!-- ended added -->
+
                                 <div class="card-header pb-0 px-2 bg-light border-bottom-0">
                                     <ul class="nav nav-tabs col-20" id="nav-tab">
+
                                         <li class="nav-item">
                                             <a data-toggle="tab" class="nav-link active" href="#details"><i class="fa fa-th"></i> Details</a>
                                         </li>
@@ -95,20 +104,50 @@
                                         <li class="nav-item">
                                             <a data-toggle="tab" class="nav-link" href="#acceptance"><i class="fa fa-check-circle"></i> Acceptance</a>
                                         </li>
-
-                                        <li class="nav-item">
-                                            <a data-toggle="tab" class="nav-link" href="#copyrights"><i class="fa fa-copyright"></i> Copy Rights</a>
+<!-- 3 -->
+                                        <li class="nav-item position-relative tour3">
+                                            <div class="tour_details p-2 border shadow position-absolute tour-container" style="z-index: 9999; bottom:3rem; min-width: 400px; border-radius: 20px;">
+                                                <strong>Copy Rights</strong>   
+                                                <p>
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
+                                                </p>
+                                                <button type="button" class="nextTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">Next</button>
+                                            </div>
+                                            <a data-toggle="tab" class="nav-link " href="#copyrights"><i class="fa fa-copyright"></i> Copy Rights</a>
                                         </li>
-
-                                        <li class="nav-item">   
-                                            <a data-toggle="tab" class="nav-link" href="#profile"><i class="fa fa-copyright"></i> Profile</a>
+<!-- 2 -->
+                                        <li class="nav-item position-relative tour2">
+                                            <div class="tour_details p-2 border shadow position-absolute tour-container" style="z-index: 9999; bottom:3rem; min-width: 400px; border-radius: 20px;">
+                                                <strong>Profile</strong>   
+                                                <p>
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
+                                                </p>
+                                                <button type="button" class="nextTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">Next</button>
+                                            </div>
+                                            <a data-toggle="tab" class="nav-link " href="#profile"><i class="fa fa-copyright"></i> Profile</a>
                                         </li>
-
-                                        <li class="nav-item">
-                                            <a data-toggle="tab" class="nav-link" href="#payments"><i class="fa fa-credit-card"></i> Payment</a>
+<!-- 4 -->
+                                        <li class="nav-item position-relative tour4 ">
+                                            <div class="tour_details p-2 border shadow position-absolute tour-container" style="z-index: 9999; bottom:3rem; min-width: 400px; border-radius: 20px;">
+                                                <strong>Payment</strong>   
+                                                <p>
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
+                                                </p>
+                                                <button type="button" class="nextTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">Next</button>
+                                            </div>
+                                            <a data-toggle="tab" class="nav-link " href="#payments"><i class="fa fa-credit-card"></i> Payment</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a data-toggle="tab" class="nav-link" href="#final_submission"><i class="fa fa-object-group" aria-hidden="true"></i> Final Submission</a>
+                                        <!-- 1 -->
+
+                                        <li class="nav-item position-relative tour1">
+                                            <div class="tour_details p-2 border shadow position-absolute tour-container" style="z-index: 9999; bottom:3rem; min-width: 400px; border-radius: 20px;">
+                                                <strong>Final submission</strong>   
+                                                <p>
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
+                                                </p>
+                                                <button type="button" class="nextTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">Next</button>
+                                            </div>
+                                            <a data-toggle="tab" class="nav-link " href="#final_submission"><i class="fa fa-object-group" aria-hidden="true"></i> Final Submission</a>
                                         </li>
                          
                                         @endif
@@ -1554,6 +1593,33 @@
  <script>
     $(document).ready(function () {
   $('#nav-tab a[href="#{{ old('tab') }}"]').tab('show')
-});
+
+    const tours = ['.tour1', '.tour2', '.tour3', '.tour4'];
+    
+    function getCurrentIndex() {
+        return tours.findIndex(selector => $(selector).find('.tour_details').is(':visible'));
+    }
+    
+    $('.nextTourBtn').on('click', function () {
+        const currentIndex = getCurrentIndex();
+        
+        if (currentIndex !== -1) {
+            // Hide current
+            $(tours[currentIndex]).find('.tour_details').hide();
+            $(tours[currentIndex]).find('a').toggleClass("tour-container")
+            
+            // Show next tour only if exists
+            const nextIndex = (currentIndex + 1 < tours.length) ? currentIndex + 1 : 0;
+            $(tours[nextIndex]).find('a').toggleClass("tour-container")
+            $(tours[nextIndex]).find('.tour_details').show();
+        }
+    });
+    
+    // Optional: initialize only the first one as visible
+    $('.tour_details').hide();
+    $('.tour1 .tour_details').show();
+    $(tours[getCurrentIndex()]).find('a').toggleClass("tour-container")
+  });
+;
 </script>
 @endsection
