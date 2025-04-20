@@ -106,7 +106,7 @@
                                         </li>
 <!-- 3 -->
                                         <li class="nav-item tour3">
-                                            <div class="tour_details p-2 border shadow position-absolute tour-container" style="z-index: 9999; border-radius: 20px; top:-8rem; height: fit-content; left:0;">
+                                            <div class="tour_details p-2 border shadow position-absolute tour-container z-40" style=" border-radius: 20px; top:-8rem; height: fit-content; left:0;">
                                                 <strong>Copy Rights</strong>   
                                                 <p>
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
@@ -117,7 +117,7 @@
                                         </li>
 <!-- 2 -->
                                         <li class="nav-item tour2">
-                                            <div class="tour_details p-2 border shadow position-absolute tour-container" style="z-index: 9999; border-radius: 20px; top:-8rem; height: fit-content; left:0">
+                                            <div class="tour_details p-2 border shadow position-absolute tour-container z-40" style=" border-radius: 20px; top:-8rem; height: fit-content; left:0">
                                                 <strong>Profile</strong>   
                                                 <p>
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
@@ -128,7 +128,7 @@
                                         </li>
 <!-- 4 -->
                                         <li class="nav-item tour4 ">
-                                            <div class="tour_details p-2 border shadow position-absolute tour-container" style="z-index: 9999; border-radius: 20px; top:-8rem; height: fit-content; left:0">
+                                            <div class="tour_details p-2 border shadow position-absolute tour-container z-40" style=" border-radius: 20px; top:-8rem; height: fit-content; left:0">
                                                 <strong>Payment</strong>   
                                                 <p>
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
@@ -140,7 +140,7 @@
                                         <!-- 1 -->
 
                                         <li class="nav-item tour1">
-                                            <div class="tour_details p-2 border shadow position-absolute tour-container" style="z-index: 9999; border-radius: 20px; top:-8rem; height: fit-content; left:0">
+                                            <div class="tour_details p-2 border shadow position-absolute tour-container z-40" style=" border-radius: 20px; top:-8rem; height: fit-content; left:0">
                                                 <strong>Final submission</strong>   
                                                 <p>
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
@@ -166,7 +166,7 @@
                                     </ul>
                                 </div>
                                 <div class="card-body p-2 ">
-                                    <div class="tab-content" style="overflow-x: auto;">
+                                    <div class="tab-content" style="">
                                         <div id="details" class="tab-pane ib-tab-box active">
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -304,8 +304,8 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-4 col-sm-4">
-                                                <div style="float:right; margin-right:30px">
+                                                <div class="col-md-4 col-8">
+                                                <div  class="float-sm-right float-left" style="margin-right:30px">
                                                             <h4>Task Overview</h4>
                                                             <p>1. Editorial check</p>
                                                             <p>2. Plagiarism Check</p>
@@ -364,7 +364,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-12 col-sm-12">
+                                                        <div class="col-md-12 col-sm-12" style="overflow-x:auto">
                                                             <hr>
                                                             <div class="">
                                                                 <table class="table table-bordered table-hover sys_table">
@@ -440,7 +440,7 @@
                                                 </div>
 
                                                 <div class="row">
-                                                    <div class="col-md-12 col-sm-12">
+                                                    <div class="col-md-12 col-sm-12" style="overflow-x: auto;">
                                                         <hr>
                                                         <div class="">
                                                             <table class="table table-bordered table-hover sys_table">
@@ -495,7 +495,7 @@
 
 
                                                 <div class="row">
-                                                    <div class="col-md-12 col-sm-12">
+                                                    <div class="col-md-12 col-sm-12" style="overflow-x: auto;">
                                                         <hr>
                                                         <div class="">
                                                             <table class="table table-bordered table-hover sys_table">
@@ -550,7 +550,7 @@
 
 
                                                 <div class="row">
-                                                    <div class="col-md-12 col-sm-12">
+                                                    <div class="col-md-12 col-sm-12" style="overflow-x: auto;">
                                                         <hr>
                                                         <div class="">
                                                             <table class="table table-bordered table-hover sys_table">
@@ -595,7 +595,7 @@
                                                 <div class="col-md-12 col-sm-12">
                                                     <h4>Review Table</h4>
     
-                                                    <div class="">
+                                                    <div class="" style="overflow-x: auto;">
                                                         <table class="table table-bordered table-hover sys_table">
                                                             <thead>
                                                                 <tr>
@@ -648,7 +648,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12">
                                                     <h4>Acceptance</h4><br>
-                                                    <div class="">
+                                                    <div class="" style="overflow-x: auto;">
                                                         <table class="table table-bordered table-hover sys_table">
                                                             <thead>
                                                                 <tr>
@@ -687,7 +687,7 @@
         <div class="row">
             <div class="col-md-12 col-sm-12">
                 <h4>Generate the Acceptance Letter</h4><br>
-                <div class="">
+                <div class="" style="overflow-x: auto;">
                     <table class="table table-bordered table-hover sys_table">
                         <thead>
                             <tr>
@@ -718,7 +718,7 @@
                                         <div id="copyrights" class="tab-pane fade ib-tab-box">
                                             <h4>Generate the Copyright Form</h4>
                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12">
+                                                <div class="col-md-12 col-sm-12" style="overflow-x: auto;">
                                                     <div class="">
                                                         <table class="table table-bordered table-hover sys_table">
                                                             <thead>
@@ -860,7 +860,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12">
                                                     <h4>Payment</h4>
-                                                    <div class="">
+                                                    <div class="" >
 
                                                         @php
                                                             if(!empty($rows[0]->payment_status)){
@@ -871,7 +871,8 @@
                                                             }
                                                         @endphp
                                                         @if ($rows[0]->journal_short_form == "IJIRE")
-                                                        <table class="table table-bordered table-hover sys_table">
+                                                        <div style="overflow-x: auto;">
+                                                        <table class="table table-bordered table-hover sys_table" >
 
                                                             <thead>
                                                                 <tr>
@@ -963,6 +964,8 @@
 
                                                             </tbody>
                                                         </table>
+                                                        </div>
+
                                                         <div class="row">
                                                             <div class="col-md-12 col-sm-12">
                                                                 <h4>Payment through Bank:</h4><br>
@@ -977,6 +980,8 @@
                                                         </div>
 
                                                         @elseif($rows[0]->journal_short_form == "IJSREAT")
+                                                        <div style="overflow-x: auto;">
+
                                                         <table class="table table-bordered table-hover sys_table">
                                                             <thead>
                                                                 <tr>
@@ -1070,6 +1075,7 @@
                                                             </tbody>
 
                                                         </table>
+                                                        </div>
                                                         <div class="row">
                                                             <div class="col-md-12 col-sm-12">
                                                                 <h4>Payment through Bank:</h4><br>
@@ -1083,6 +1089,8 @@
                                                             </div>
                                                         </div>
                                                         @elseif($rows[0]->journal_short_form == "IJRTMR")
+                                                        <div style="overflow-x: auto;">
+
                                                         <table class="table table-bordered table-hover sys_table">
 
                                                             <thead>
@@ -1175,6 +1183,7 @@
 
                                                             </tbody>
                                                         </table>
+                                                        </div>
                                                         <div class="row">
                                                             <div class="col-md-12 col-sm-12">
                                                                 <h4>Payment through Bank:</h4><br>
@@ -1188,6 +1197,8 @@
                                                             </div>
                                                         </div>
                                                         @elseif($rows[0]->journal_short_form == "INDJCST")
+                                                        <div style="overflow-x: auto;">
+
                                                         <table class="table table-bordered table-hover sys_table">
 
                                                             <thead>
@@ -1280,6 +1291,7 @@
 
                                                             </tbody>
                                                         </table>
+                                                        </div>
                                                         <div class="row">
                                                             <div class="col-md-12 col-sm-12">
                                                                 <h4>Payment through Bank:</h4><br>

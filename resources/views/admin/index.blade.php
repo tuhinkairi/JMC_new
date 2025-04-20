@@ -627,6 +627,7 @@ td, th {
                                 </tr>
                             </thead>
                             <tbody>
+                                <!-- first data show comming -->
                               @foreach( $Alldata as $key => $row )
                                 <tr>
                                     <td class="text-center" style='width:150px;'><a href="{{url('dashboard/author/article/show/'.$row->id)}}">{{$row->journal_short_form}}-0000{{$row->id}}</a></td>
