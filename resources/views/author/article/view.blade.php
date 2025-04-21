@@ -106,7 +106,7 @@
                                         </li>
 <!-- 3 -->
                                         <li class="nav-item tour3">
-                                            <div class="tour_details p-2 border shadow position-absolute tour-container z-40" style=" border-radius: 20px; top:-8rem; height: fit-content; left:0;">
+                                            <div class="tour_details d-none p-2 border shadow position-absolute tour-container z-40" style=" border-radius: 20px; top:-8rem; height: fit-content; left:0;">
                                                 <strong>Copy Rights</strong>   
                                                 <p>
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
@@ -117,7 +117,7 @@
                                         </li>
 <!-- 2 -->
                                         <li class="nav-item tour2">
-                                            <div class="tour_details p-2 border shadow position-absolute tour-container z-40" style=" border-radius: 20px; top:-8rem; height: fit-content; left:0">
+                                            <div class="tour_details d-none p-2 border shadow position-absolute tour-container z-40" style=" border-radius: 20px; top:-8rem; height: fit-content; left:0">
                                                 <strong>Profile</strong>   
                                                 <p>
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
@@ -128,7 +128,7 @@
                                         </li>
 <!-- 4 -->
                                         <li class="nav-item tour4 ">
-                                            <div class="tour_details p-2 border shadow position-absolute tour-container z-40" style=" border-radius: 20px; top:-8rem; height: fit-content; left:0">
+                                            <div class="tour_details d-none p-2 border shadow position-absolute tour-container z-40" style=" border-radius: 20px; top:-8rem; height: fit-content; left:0">
                                                 <strong>Payment</strong>   
                                                 <p>
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
@@ -140,7 +140,7 @@
                                         <!-- 1 -->
 
                                         <li class="nav-item tour1">
-                                            <div class="tour_details p-2 border shadow position-absolute tour-container z-40" style=" border-radius: 20px; top:-8rem; height: fit-content; left:0">
+                                            <div class="tour_details d-none p-2 border shadow position-absolute tour-container z-40" style=" border-radius: 20px; top:-8rem; height: fit-content; left:0">
                                                 <strong>Final submission</strong>   
                                                 <p>
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
@@ -305,7 +305,7 @@
                                                 </div>
 
                                                 <div class="col-md-4 col-8">
-                                                <div  class="float-sm-right float-left" style="margin-right:30px">
+                                                <div  class="float-md-right float-left" style="margin-right:30px">
                                                             <h4>Task Overview</h4>
                                                             <p>1. Editorial check</p>
                                                             <p>2. Plagiarism Check</p>
@@ -740,8 +740,6 @@
 
 
                                         <div id="profile" class="tab-pane fade ib-tab-box">
-
-
     <div class="row">
         <div class="col-12">
 
@@ -871,99 +869,80 @@
                                                             }
                                                         @endphp
                                                         @if ($rows[0]->journal_short_form == "IJIRE")
-                                                        <div style="overflow-x: auto;">
-                                                        <table class="table table-bordered table-hover sys_table" >
+                                                        <div >
+                                                        <div class="row ">
+    @foreach([$rows[0]->payment_status] as $status) 
+        @for ($i = 1; $i <= 3; $i++)
+            @php
+                $show = true;
+                if (!empty($status)) {
+                    $show = $method == $i;
+                }
 
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Journal</th>
-                                                                    <th width="36%">Author</th>
-                                                                    <th>Amount</th>
-                                                                    <th>Payment Method</th>
-                                                                    <th <?php if(empty($rows[0]->payment_status)){echo 'hidden';} ?> class="text-center">Status</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr <?php if(!empty($rows[0]->payment_status)){if($method == 1){}else{echo 'hidden';}} ?>>
-                                                                    <td class="text-center">{{$rows[0]->journal_short_form}}</td>
-                                                                    <td width="36%">For Indian Author</td>
-                                                                    <td>
-                                                                    <b>INR {{$payment_data['Indian']['IJIRE']['withoutdoi']}}</b>
-                                                                            <ul>
-                                                                            <li>APC + {{$gst}}% GST</li>
-                                                                            <li>Without DOI</li>
-                                                                            <li>Online Publication</li>
-                                                                            <li>Max. 10 to 20 pages</li>
-                                                                            <li>E-Certificate(All Authors)</li>
-                                                                        </ul>
-                                                                    </td>
-                                                                    <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_IipnD9qYVU6uIJ" async> </script> </form></td>
-                                                                    <td <?php if(empty($rows[0]->payment_status)){echo 'hidden';} ?> class="text-center">
-                                                                        @php
-                                                                        if(!empty($rows[0]->payment_status)){
-                                                                            if($paymentstatus == 'paid'){
-                                                                                echo '<span class="badge badge-pill" style="background-color:green; color:#ffffff;border:1px solid green">Paid</span>';
-                                                                            }else{
-                                                                                echo '<span class="badge badge-pill" style="background-color:red; color:#ffffff;border:1px solid red">Un Paid</span>';
-                                                                            }
-                                                                        }
-                                                                        @endphp
-                                                                    </td>
-                                                                </tr>
-                                                                <tr <?php if(!empty($rows[0]->payment_status)){if($method == 2){}else{echo 'hidden';}} ?>>
-                                                                    <td class="text-center">{{$rows[0]->journal_short_form}}</td>
-                                                                    <td width="36%">For Indian Author</td>
-                                                                    <td>
-                                                                    <b>INR {{$payment_data['Indian']['IJIRE']['withdoi']}}</b>
-                                                                            <ul>
-                                                                            <li>APC + {{$gst}}% GST</li>
-                                                                            <li>With DOI(10.59256)</li>
-                                                                            <li>Online Publication</li>
-                                                                            <li>Max. 10 to 20 pages</li>
-                                                                            <li>E-Certificate(All Authors)</li>
-                                                                        </ul>
-                                                                    </td>
-                                                                    <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_LX1iJCBW4Sof5t" async> </script> </form></td>
-                                                                    <td <?php if(empty($rows[0]->payment_status)){echo 'hidden';} ?> class="text-center">
-                                                                        @php
-                                                                        if(!empty($rows[0]->payment_status)){
-                                                                            if($paymentstatus == 'paid'){
-                                                                                echo '<span class="badge badge-pill" style="background-color:green; color:#ffffff;border:1px solid green">Paid</span>';
-                                                                            }else{
-                                                                                echo '<span class="badge badge-pill" style="background-color:red; color:#ffffff;border:1px solid red">Un Paid</span>';
-                                                                            }
-                                                                        }
-                                                                        @endphp
-                                                                    </td>
-                                                                </tr>
-                                                                <tr <?php if(!empty($rows[0]->payment_status)){if($method == 3){}else{echo 'hidden';}} ?>>
-                                                                    <td class="text-center">{{$rows[0]->journal_short_form}}</td>
-                                                                    <td width="36%">For Foreign Author </td>
-                                                                    <td>
-                                                                    <b>USD {{$payment_data['Others']['IJIRE']['withdoi']}}</b>
-                                                                            <ul>
-                                                                            <li>With DOI(10.59256)</li>
-                                                                            <li>Online Publication</li>
-                                                                            <li>Max. 10 to 20 pages</li>
-                                                                            <li>E-Certificate(All Authors)</li>
-                                                                        </ul>
-                                                                    </td>
-                                                                    <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_IipweXrOIDJtu1" async> </script> </form></td>
-                                                                    <td <?php if(empty($rows[0]->payment_status)){echo 'hidden';} ?> class="text-center">
-                                                                        @php
-                                                                        if(!empty($rows[0]->payment_status)){
-                                                                            if($paymentstatus == 'paid'){
-                                                                                echo '<span class="badge badge-pill" style="background-color:green; color:#ffffff;border:1px solid green">Paid</span>';
-                                                                            }else{
-                                                                                echo '<span class="badge badge-pill" style="background-color:red; color:#ffffff;border:1px solid red">Un Paid</span>';
-                                                                            }
-                                                                        }
-                                                                        @endphp
-                                                                    </td>
-                                                                </tr>
+                switch ($i) {
+                    case 1:
+                        $amount = "INR " . $payment_data['Indian']['IJIRE']['withoutdoi'];
+                        $details = ['APC + ' . $gst . '% GST', 'Without DOI', 'Online Publication', 'Max. 10 to 20 pages', 'E-Certificate (All Authors)'];
+                        $label = "For Indian Author";
+                        $buttonId = "pl_IipnD9qYVU6uIJ";
+                        break;
+                    case 2:
+                        $amount = "INR " . $payment_data['Indian']['IJIRE']['withdoi'];
+                        $details = ['APC + ' . $gst . '% GST', 'With DOI (10.59256)', 'Online Publication', 'Max. 10 to 20 pages', 'E-Certificate (All Authors)'];
+                        $label = "For Indian Author";
+                        $buttonId = "pl_LX1iJCBW4Sof5t";
+                        break;
+                    case 3:
+                        $amount = "USD " . $payment_data['Others']['IJIRE']['withdoi'];
+                        $details = ['With DOI (10.59256)', 'Online Publication', 'Max. 10 to 20 pages', 'E-Certificate (All Authors)'];
+                        $label = "For Foreign Author";
+                        $buttonId = "pl_IipweXrOIDJtu1";
+                        break;
+                }
 
-                                                            </tbody>
-                                                        </table>
+                $statusBadge = '';
+                if (!empty($status)) {
+                    if ($paymentstatus == 'paid') {
+                        $statusBadge = '<span class="badge badge-pill" style="background-color:green; color:#ffffff;border:1px solid green">Paid</span>';
+                    } else {
+                        $statusBadge = '<span class="badge badge-pill" style="background-color:red; color:#ffffff;border:1px solid red">Un Paid</span>';
+                    }
+                }
+            @endphp
+
+            @if($show)
+            <div class="col-sm-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow border">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <h5 class="card-title font-weight-bold text-primary text-center" style="color:#007bff !important">{{$rows[0]->journal_short_form}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{$label}}</h6>
+                            <p><strong>{{$amount}}</strong></p>
+                            <ul class="mb-3">
+                                @foreach($details as $detail)
+                                    <li>{{$detail}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="mb-2 d-flex justify-content-center align-content-center">
+                                <form>
+                                    <script src="https://checkout.razorpay.com/v1/payment-button.js"
+                                            data-payment_button_id="{{ $buttonId }}" async></script>
+                                </form>
+                            </div>
+                            @if(!empty($status))
+                                <div class="text-center">{!! $statusBadge !!}</div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+        @endfor
+    @endforeach
+</div>
+
                                                         </div>
 
                                                         <div class="row">
@@ -1606,32 +1585,63 @@
     $(document).ready(function () {
   $('#nav-tab a[href="#{{ old('tab') }}"]').tab('show')
 
+    //   add your list here to open tour makesure pass a list
+    const FirstTime  = 1;
+
     const tours = ['.tour1', '.tour2', '.tour3', '.tour4'];
     
     function getCurrentIndex() {
+        
         return tours.findIndex(selector => $(selector).find('.tour_details').is(':visible'));
     }
     
     $('.nextTourBtn').on('click', function () {
         const currentIndex = getCurrentIndex();
         
-        if (currentIndex !== -1) {
+        if (currentIndex < tours.length && currentIndex >= 0) {
             // Hide current
-            $(tours[currentIndex]).find('.tour_details').hide();
+            $(tours[currentIndex]).find('.tour_details').toggleClass("d-none");
             $(tours[currentIndex]).find('a').toggleClass("tour-container")
             
             // Show next tour only if exists
-            const nextIndex = (currentIndex + 1 < tours.length) ? currentIndex + 1 : 0;
+            const nextIndex = currentIndex + 1;
             $(tours[nextIndex]).find('a').toggleClass("tour-container")
-            $(tours[nextIndex]).find('.tour_details').show();
+            $(tours[nextIndex]).find('.tour_details').toggleClass("d-none");
+        }
+        else{
+            // Hide current
+            $(tours[currentIndex]).find('.tour_details').toggleClass("d-none");
+            $(tours[currentIndex]).find('a').toggleClass("tour-container")            
         }
     });
     
     // Optional: initialize only the first one as visible
-    $('.tour_details').hide();
-    $('.tour1 .tour_details').show();
-    $(tours[getCurrentIndex()]).find('a').toggleClass("tour-container")
+    // $('.tour_details').hide();
+    if (FirstTime==0) {
+        $('.tour1 .tour_details').toggleClass("d-none");
+        $(tours[getCurrentIndex()]).find('a').toggleClass("tour-container")
+    }
   });
-;
 </script>
+<script>
+$(document).ready(function () {
+    const tabStorageKey = "activeNavTab";
+
+    // On click, store the href of the active tab
+    $('.nav-link[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        const activeTab = $(e.target).attr('href'); // e.g., "#tasks"
+        localStorage.setItem(tabStorageKey, activeTab);
+    });
+
+    // On page load, check localStorage and activate the stored tab
+    const lastTab = localStorage.getItem(tabStorageKey);
+    if (lastTab) {
+        const targetTab = $(`.nav-link[href="${lastTab}"]`);
+        if (targetTab.length) {
+            targetTab.tab('show');
+        }
+    }
+});
+</script>
+
 @endsection

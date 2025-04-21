@@ -17,6 +17,17 @@ td, th {
   .hide-column {
             display: none;
         }
+
+/* btn animation */
+#newSubmission{
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: .25;
+  }
+}
 </style>
 <!-- Start Content-->
 <div class="container-fluid">
@@ -604,10 +615,10 @@ td, th {
                     <div class="ibox">
                         <div class="ibox-title d-flex align-content-center justify-content-center justify-content-md-between py-2 flex-wrap">
                             <h4 class="">Article List</h4>
-                            <div class="d-flex gap-4 items-center justify-content-end flex-fill">
+                            <div class="d-flex gap-2 align-content-center justify-content-sm-end justify-content-center flex-fill flex-wrap">
 
-                                <a class="d-block mb-0" href="{{url('dashboard/author/faq')}}"><span class="btn btn-blue upload_file waves-effect waves-light" style="background-color:#8D0672;">Submission Guidelines</span></a>
-                                <a class="d-block ml-1" href="{{url('dashboard/author/addarticle')}}"><span class="btn btn-blue upload_file waves-effect waves-light" style="background: linear-gradient(to right, #F707F7, #FCE500); border: none; color: white; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background 0.3s ease;">New Submission</span></a>
+                                <a class="d-block mb-0 my-1 my-sm-0" style="box-sizing: border-box;" href="{{url('dashboard/author/faq')}}"><span class="btn btn-blue upload_file waves-effect waves-light mx-1" style="background-color:#8D0672; height: 100%;">Submission Guidelines</span></a>
+                                <a class="d-block my-1 my-sm-0" href="{{url('dashboard/author/addarticle')}}"><span class="btn btn-blue upload_file waves-effect waves-light mx-1" style=" border: none; color: white; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background 0.3s ease;" id="newSubmission">New Submission</span></a>
                             </div>
                                 {{-- <a href="{{url('dashboard/author/addarticle')}}"><p style="float: right;">New Submission</p> --}}
                             {{-- <hr> --}}
@@ -627,7 +638,7 @@ td, th {
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- first data show comming -->
+                                <!-- for tour comming -->
                               @foreach( $Alldata as $key => $row )
                                 <tr>
                                     <td class="text-center" style='width:150px;'><a href="{{url('dashboard/author/article/show/'.$row->id)}}">{{$row->journal_short_form}}-0000{{$row->id}}</a></td>
@@ -725,7 +736,15 @@ td, th {
 //     }
 //     })
 // };
+$(document).ready(function() {
 
+    var myJsVariable = <?php echo $Alldata ?>;
+    
+    // Now you can use myJsVariable in your jQuery code
+    
+    console.log("working",myJsVariable); 
+}
+)
 //Details data change Asynchronous
 $('#journal').change(function(){
     let val=$(this).val();
