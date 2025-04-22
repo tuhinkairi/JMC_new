@@ -112,7 +112,7 @@
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
                                                 </p>
                                                 <button type="button" class="nextTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">Next</button>
-                                                <button type="button" class="cancelTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">close Tour</button>
+                                                <button type="button" class="cancelTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">Close Tour</button>
                                             </div>
                                             <a data-toggle="tab" class="nav-link " href="#copyrights"><i class="fa fa-copyright"></i> Copy Rights</a>
                                         </li>
@@ -124,7 +124,7 @@
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
                                                 </p>
                                                 <button type="button" class="nextTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">Next</button>
-                                                <button type="button" class="cancelTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">close Tour</button>
+                                                <button type="button" class="cancelTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">Close Tour</button>
                                             </div>
                                             <a data-toggle="tab" class="nav-link " href="#profile"><i class="fa fa-copyright"></i> Profile</a>
                                         </li>
@@ -135,8 +135,8 @@
                                                 <p>
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
                                                 </p>
-                                                <button type="button" class="nextTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">Next</button>
-                                                <button type="button" class="cancelTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">close Tour</button>
+                                                <button type="button" class="nextTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">Finish</button>
+                                                <!-- <button type="button" class="cancelTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">Close Tour</button> -->
                                             </div>
                                             <a data-toggle="tab" class="nav-link " href="#payments"><i class="fa fa-credit-card"></i> Payment</a>
                                         </li>
@@ -1519,57 +1519,56 @@
  <script src="https://cdn.jsdelivr.net/npm/jkanban@1.3.1/dist/jkanban.min.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  <script>
-    $(document).ready(function () {
-  $('#nav-tab a[href="#{{ old('tab') }}"]').tab('show')
+  $(document).ready(function () {
+    $('#nav-tab a[href="#{{ old('tab') }}"]').tab('show');
 
-    //   add your list here to open tour makesure pass a list
-    const FirstTime  = 1;
+    const FirstTime = 1;
     const LOCAL_STORAGE_KEY = 'tourCancelled';
     const tourState = localStorage.getItem(LOCAL_STORAGE_KEY);
     const tours = ['.tour1', '.tour2', '.tour3', '.tour4'];
-    
+
     function getCurrentIndex() {
-        return tours.findIndex(selector => $(selector).find('.tour_details').is(':visible'));
+      return tours.findIndex(selector => $(selector).find('.tour_details').is(':visible'));
     }
-    
 
     $('.nextTourBtn').on('click', function () {
-        const currentIndex = getCurrentIndex();
-        
-        if (currentIndex < tours.length && currentIndex >= 0) {
-            // Hide current
-            $(tours[currentIndex]).find('.tour_details').toggleClass("d-none");
-            $(tours[currentIndex]).find('a').toggleClass("tour-container")
-            
-            // Show next tour only if exists
-            const nextIndex = currentIndex + 1;
-            $(tours[nextIndex]).find('a').toggleClass("tour-container")
-            $(tours[nextIndex]).find('.tour_details').toggleClass("d-none");
+      const currentIndex = getCurrentIndex();
+
+      if (currentIndex >= 0 && currentIndex < tours.length) {
+        // Hide current
+        $(tours[currentIndex]).find('.tour_details').addClass("d-none");
+        $(tours[currentIndex]).find('a').removeClass("tour-container");
+
+        const nextIndex = currentIndex + 1;
+        if (nextIndex < tours.length) {
+          $(tours[nextIndex]).find('.tour_details').removeClass("d-none");
+          $(tours[nextIndex]).find('a').addClass("tour-container");
+        } else {
+          // End of tour
+          localStorage.setItem(LOCAL_STORAGE_KEY, 'true');
+          console.log("Tour completed and state saved.");
         }
-        else{
-            // Hide current
-            $(tours[currentIndex]).find('.tour_details').toggleClass("d-none");
-            $(tours[currentIndex]).find('a').toggleClass("tour-container")            
-        }
+      }
     });
 
-    // handel the cancel btn 
     $('.cancelTourBtn').on('click', function () {
-            const currentIndex = getCurrentIndex();
-            if (currentIndex !== -1) {
-                $(tours[currentIndex]).find('.tour_details').addClass("d-none");
-                $(tours[currentIndex]).find('a').removeClass("tour-container");
-            }
-            localStorage.setItem(LOCAL_STORAGE_KEY, 'true');
+      const currentIndex = getCurrentIndex();
+      if (currentIndex !== -1) {
+        $(tours[currentIndex]).find('.tour_details').addClass("d-none");
+        $(tours[currentIndex]).find('a').removeClass("tour-container");
+      }
+      localStorage.setItem(LOCAL_STORAGE_KEY, 'true');
+      console.log("Tour cancelled.");
     });
 
-    
-    // Optional: initialize only the first one as visible
-    if (FirstTime==1 && !tourState) {
-        $('.tour1 .tour_details').toggleClass("d-none");
-        $(tours[getCurrentIndex()]).find('a').toggleClass("tour-container")
+    // Only show if not cancelled
+    if (FirstTime == 1 && !tourState) {
+      $('.tour1 .tour_details').removeClass("d-none");
+      $(tours[0]).find('a').addClass("tour-container");
     }
   });
+</script>
+
 </script>
 <script>
 $(document).ready(function () {
