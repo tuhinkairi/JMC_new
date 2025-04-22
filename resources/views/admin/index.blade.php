@@ -613,11 +613,14 @@ td, th {
 
                 <div class="col-md-12">
                     <div class="ibox">
-                        <div class="ibox-title d-flex align-content-center justify-content-center justify-content-md-between py-2 flex-wrap">
+                        <div class="ibox-title d-flex align-content-center justify-content-center justify-content-md-between py-2 flex-wrap position-relative">
+                            <!-- tour for dashboard -->
+                            <span id="tour_data" class="d-none p-2 border shadow position-absolute tour-container z-40 text-white" style="border-radius: 20px 20px 20px 0px; top: 2rem; height: fit-content; left: 5.5rem; background-color: #007bff;">Click the ID of <strong>Articles</strong> to see detials</span> 
+                            <!-- end tour for dashboard -->
                             <h4 class="">Article List</h4>
                             <div class="d-flex gap-2 align-content-center justify-content-sm-end justify-content-center flex-fill flex-wrap">
-
-                                <a class="d-block mb-0 my-1 my-sm-0" style="box-sizing: border-box;" href="{{url('dashboard/author/faq')}}"><span class="btn btn-blue upload_file waves-effect waves-light mx-1" style="background-color:#8D0672; height: 100%;">Submission Guidelines</span></a>
+                                
+                                <a class="d-block mb-0 my-1 my-sm-0" style="box-sizing: border-box;" href="{{url('dashboard/author/ faq')}}"><span class="btn btn-blue upload_file waves-effect waves-light mx-1" style="background-color:#8D0672; height: 100%;">Submission Guidelines</span></a>
                                 <a class="d-block my-1 my-sm-0" href="{{url('dashboard/author/addarticle')}}"><span class="btn btn-blue upload_file waves-effect waves-light mx-1" style=" border: none; color: white; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background 0.3s ease;" id="newSubmission">New Submission</span></a>
                             </div>
                                 {{-- <a href="{{url('dashboard/author/addarticle')}}"><p style="float: right;">New Submission</p> --}}
@@ -627,21 +630,20 @@ td, th {
                         </div>
  
                       <!-- Data Table Start -->
-                      <div class="pb-2" style="overflow-x:auto;">
+                      <div class="pb-2" style="overflow-x:auto;">  
                         <table id="basic-datatable" class="table table-striped table-hover table-white nowrap">
                             <thead>
                                 <tr>
-                                    <th class="text-center">ID</th>
+                                    <th class="text-center" id="articleId">ID</th>
                                     <th class="lg-title">Title</th>
                                     <th class="">Research Area</th>
                                     <th class="text-center">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- for tour comming -->
                               @foreach( $Alldata as $key => $row )
                                 <tr>
-                                    <td class="text-center" style='width:150px;'><a href="{{url('dashboard/author/article/show/'.$row->id)}}">{{$row->journal_short_form}}-0000{{$row->id}}</a></td>
+                                    <td class="text-center " style='width:150px;'><a href="{{url('dashboard/author/article/show/'.$row->id)}}" >{{$row->journal_short_form}}-0000{{$row->id}}</a></td>
                                     <td class="lg-title">{{$row->title}}</td>
                                     <td>{{ $row->category }}</td>
                                     <td class="text-center"><span class="badge badge-pill" style="background-color:{{$row->colourflag}}; color:#ffffff;border:1px solid {{$row->colourflag}}">{{$row->statusname}}</span></td>
@@ -821,4 +823,47 @@ $('#title_name').change(function(){
 });
 
 </script>
+<script>
+  $(document).ready(function () {
+    const TOUR_FLAG = true; // Change to false to disable tour
+    const TOUR_KEY = 'tourDataDismissed';
+
+    // Check if dismissed
+    const isTourDismissed = localStorage.getItem(TOUR_KEY);
+
+    if (TOUR_FLAG && !isTourDismissed) {
+      $('#tour_data').removeClass("d-none"); // Ensure it's visible initially
+      addAritcleIdStyle()
+    } else {
+      $('#tour_data').addClass("d-none");
+      resetArticleIdStyle(); // Ensure style is reset even on page reload
+    }
+
+    // Bind one-time dismiss handler
+    $(document).on('click', function (e) {
+      // Exclude clicks inside the tour itself
+      if ($(e.target).closest('#tour_data').length === 0) {
+        if (!localStorage.getItem(TOUR_KEY)) {
+          $('#tour_data').fadeOut(200);
+          resetArticleIdStyle();
+          localStorage.setItem(TOUR_KEY, 'true');
+        }
+      }
+    });
+
+    function resetArticleIdStyle() {
+      const $article = $('#articleId');
+      $article.removeAttr('style');
+      // Optional: add default styles if needed
+      // $article.css({ color: '', backgroundColor: '' });
+    }
+    function addAritcleIdStyle() {
+    const $article = $('#articleId');
+    $article.attr('style', 'background-color: #007bff; color: white;');
+}
+
+  });
+</script>
+
+
 @endsection
