@@ -112,17 +112,19 @@
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
                                                 </p>
                                                 <button type="button" class="nextTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">Next</button>
+                                                <button type="button" class="cancelTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">close Tour</button>
                                             </div>
                                             <a data-toggle="tab" class="nav-link " href="#copyrights"><i class="fa fa-copyright"></i> Copy Rights</a>
                                         </li>
 <!-- 2 -->
                                         <li class="nav-item tour2">
-                                            <div class="tour_details d-none p-2 border shadow position-absolute tour-container z-40" style=" border-radius: 20px; top:-8rem; height: fit-content; left:0">
-                                                <strong>Profile</strong>   
+                                            <div class="tour_details d-none p-2 border shadow position-absolute tour-container z-40 position-relative" style=" border-radius: 20px; top:-8rem; height: fit-content; left:0">
+                                                <strong>Profile</strong>
                                                 <p>
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
                                                 </p>
                                                 <button type="button" class="nextTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">Next</button>
+                                                <button type="button" class="cancelTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">close Tour</button>
                                             </div>
                                             <a data-toggle="tab" class="nav-link " href="#profile"><i class="fa fa-copyright"></i> Profile</a>
                                         </li>
@@ -134,6 +136,7 @@
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
                                                 </p>
                                                 <button type="button" class="nextTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">Next</button>
+                                                <button type="button" class="cancelTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">close Tour</button>
                                             </div>
                                             <a data-toggle="tab" class="nav-link " href="#payments"><i class="fa fa-credit-card"></i> Payment</a>
                                         </li>
@@ -146,6 +149,7 @@
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ducimus minus accusantium rerum, incidunt nam voluptatum velit numquam excepturi natus illum rem eligendi eaque et quo officia dolor dignissimos a!
                                                 </p>
                                                 <button type="button" class="nextTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">Next</button>
+                                                <button type="button" class="cancelTourBtn ml-auto bg-white px-2 py-1 border-0" style="border-radius: 20px; cursor: pointer;">Close Tour</button>
                                             </div>
                                             <a data-toggle="tab" class="nav-link " href="#final_submission"><i class="fa fa-object-group" aria-hidden="true"></i> Final Submission</a>
                                         </li>
@@ -440,9 +444,9 @@
                                                 </div>
 
                                                 <div class="row">
-                                                    <div class="col-md-12 col-sm-12" style="overflow-x: auto;">
+                                                    <div class="col-md-12 col-sm-12" >
                                                         <hr>
-                                                        <div class="">
+                                                        <div class="" style="overflow-x: auto;">
                                                             <table class="table table-bordered table-hover sys_table">
                                                                 <thead>
                                                                     <tr>
@@ -495,9 +499,9 @@
 
 
                                                 <div class="row">
-                                                    <div class="col-md-12 col-sm-12" style="overflow-x: auto;">
+                                                    <div class="col-md-12 col-sm-12" >
                                                         <hr>
-                                                        <div class="">
+                                                        <div class="" style="overflow-x: auto;">
                                                             <table class="table table-bordered table-hover sys_table">
                                                                 <thead>
                                                                     <tr>
@@ -550,9 +554,9 @@
 
 
                                                 <div class="row">
-                                                    <div class="col-md-12 col-sm-12" style="overflow-x: auto;">
+                                                    <div class="col-md-12 col-sm-12" >
                                                         <hr>
-                                                        <div class="">
+                                                        <div class="" style="overflow-x: auto;">
                                                             <table class="table table-bordered table-hover sys_table">
                                                                 <thead>
                                                                     <tr>
@@ -959,102 +963,79 @@
                                                         </div>
 
                                                         @elseif($rows[0]->journal_short_form == "IJSREAT")
-                                                        <div style="overflow-x: auto;">
+                                                        <div class="row">
+    @foreach([$rows[0]->payment_status] as $status) 
+        @for ($i = 1; $i <= 3; $i++)
+            @php
+                $show = true;
+                if (!empty($status)) {
+                    $show = $method == $i;
+                }
 
-                                                        <table class="table table-bordered table-hover sys_table">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th class="text-center">Journal</th>
-                                                                    <th width="36%">Author</th>
-                                                                    <th>Amount</th>
-                                                                    <th>Payment Method</th>
-                                                                    <th <?php if(empty($rows[0]->payment_status)){echo 'hidden';} ?> class="text-center">Status</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr <?php if(!empty($rows[0]->payment_status)){if($method == 1){}else{echo 'hidden';}} ?>>
-                                                                    <td class="text-center">{{$rows[0]->journal_short_form}}</td>
-                                                                    <td width="36%">For Indian Author</td>
-                                                                    <td>
-                                                                    <b>INR {{$payment_data['Indian']['IJSREAT']['withoutdoi']}}</b>
-                                                                            <ul>
-                                                                            <li>APC + {{$gst}}% GST</li>
-                                                                            <li>Without DOI</li>
-                                                                            <li>Online Publication</li>
-                                                                            <li>Max. 10 to 20 pages</li>
-                                                                            <li>E-Certificate(All Authors)</li>
-                                                                        </ul>
-                                                                    </td>
-                                                                    <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_M5F2CxmT6aHnMg" async> </script> </form></td>
-                                                                    <td <?php if(empty($rows[0]->payment_status)){echo 'hidden';} ?> class="text-center">
-                                                                        @php
-                                                                        if(!empty($rows[0]->payment_status)){
-                                                                            if($paymentstatus == 'paid'){
-                                                                                echo '<span class="badge badge-pill" style="background-color:green; color:#ffffff;border:1px solid green">Paid</span>';
-                                                                            }else{
-                                                                                echo '<span class="badge badge-pill" style="background-color:red; color:#ffffff;border:1px solid red">Un Paid</span>';
-                                                                            }
-                                                                        }
-                                                                        @endphp
-                                                                    </td>
-                                                                </tr>
+                switch ($i) {
+                    case 1:
+                        $amount = "INR " . $payment_data['Indian']['IJSREAT']['withoutdoi'];
+                        $details = ['APC + ' . $gst . '% GST', 'Without DOI', 'Online Publication', 'Max. 10 to 20 pages', 'E-Certificate (All Authors)'];
+                        $label = "For Indian Author";
+                        $buttonId = "pl_M5F2CxmT6aHnMg";
+                        break;
+                    case 2:
+                        $amount = "INR " . $payment_data['Indian']['IJSREAT']['withdoi'];
+                        $details = ['APC + ' . $gst . '% GST', 'With DOI (10.59256)', 'Online Publication', 'Max. 10 to 20 pages', 'E-Certificate (All Authors)'];
+                        $label = "For Indian Author";
+                        $buttonId = "pl_M5F4CjwVqlcI0D";
+                        break;
+                    case 3:
+                        $amount = "USD " . $payment_data['Others']['IJSREAT']['withdoi'];
+                        $details = ['With DOI (10.59256)', 'Online Publication', 'Max. 10 to 20 pages', 'E-Certificate (All Authors)'];
+                        $label = "For Foreign Author";
+                        $buttonId = "pl_M5F5sakrcOOelN";
+                        break;
+                }
 
-                                                                <tr <?php if(!empty($rows[0]->payment_status)){if($method == 2){}else{echo 'hidden';}} ?>>
-                                                                    <td class="text-center">{{$rows[0]->journal_short_form}}</td>
-                                                                    <td width="36%">For Indian Author</td>
-                                                                    <td>
-                                                                    <b>INR {{$payment_data['Indian']['IJSREAT']['withdoi']}}</b>
-                                                                            <ul>
-                                                                            <li>APC + {{$gst}}% GST</li>
-                                                                            <li>With DOI(10.59256)</li>
-                                                                            <li>Online Publication</li>
-                                                                            <li>Max. 10 to 20 pages</li>
-                                                                            <li>E-Certificate(All Authors)</li>
-                                                                        </ul>
-                                                                    </td>
-                                                                    <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_M5F4CjwVqlcI0D" async> </script> </form></td>
-                                                                    <td <?php if(empty($rows[0]->payment_status)){echo 'hidden';} ?> class="text-center">
-                                                                        @php
-                                                                        if(!empty($rows[0]->payment_status)){
-                                                                            if($paymentstatus == 'paid'){
-                                                                                echo '<span class="badge badge-pill" style="background-color:green; color:#ffffff;border:1px solid green">Paid</span>';
-                                                                            }else{
-                                                                                echo '<span class="badge badge-pill" style="background-color:red; color:#ffffff;border:1px solid red">Un Paid</span>';
-                                                                            }
-                                                                        }
-                                                                        @endphp
-                                                                    </td>
-                                                                </tr>
-                                                                <tr <?php if(!empty($rows[0]->payment_status)){if($method == 3){}else{echo 'hidden';}} ?>>
-                                                                    <td class="text-center">{{$rows[0]->journal_short_form}}</td>
-                                                                    <td width="36%">For Foreign Author </td>
-                                                                    <td>
-                                                                    <b>USD {{$payment_data['Others']['IJSREAT']['withdoi']}}</b>
-                                                                            <ul>
-                                                                            <li>With DOI(10.59256)</li>
-                                                                            <li>Online Publication</li>
-                                                                            <li>Max. 10 to 20 pages</li>
-                                                                            <li>E-Certificate(All Authors)</li>
-                                                                        </ul>
-                                                                    </td>
-                                                                    <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_M5F5sakrcOOelN" async> </script> </form></td>
-                                                                    <td <?php if(empty($rows[0]->payment_status)){echo 'hidden';} ?> class="text-center">
-                                                                        @php
-                                                                        if(!empty($rows[0]->payment_status)){
-                                                                            if($paymentstatus == 'paid'){
-                                                                                echo '<span class="badge badge-pill" style="background-color:green; color:#ffffff;border:1px solid green">Paid</span>';
-                                                                            }else{
-                                                                                echo '<span class="badge badge-pill" style="background-color:red; color:#ffffff;border:1px solid red">Un Paid</span>';
-                                                                            }
-                                                                        }
-                                                                        @endphp
-                                                                    </td>
-                                                                </tr>
+                $statusBadge = '';
+                if (!empty($status)) {
+                    if ($paymentstatus == 'paid') {
+                        $statusBadge = '<span class="badge badge-pill" style="background-color:green; color:#ffffff;border:1px solid green">Paid</span>';
+                    } else {
+                        $statusBadge = '<span class="badge badge-pill" style="background-color:red; color:#ffffff;border:1px solid red">Un Paid</span>';
+                    }
+                }
+            @endphp
 
-                                                            </tbody>
+            @if($show)
+                <div class="col-sm-6 col-lg-4 mb-4">
+                    <div class="card h-100 shadow border">
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div>
+                                <h5 class="card-title font-weight-bold text-primary text-center" style="color:#007bff !important">{{$rows[0]->journal_short_form}}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{$label}}</h6>
+                                <p><strong>{{$amount}}</strong></p>
+                                <ul class="mb-3">
+                                    @foreach($details as $detail)
+                                        <li>{{$detail}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="mb-2 d-flex justify-content-center align-content-center">
+                                    <form>
+                                        <script src="https://checkout.razorpay.com/v1/payment-button.js"
+                                                data-payment_button_id="{{ $buttonId }}" async></script>
+                                    </form>
+                                </div>
+                                @if(!empty($status))
+                                    <div class="text-center">{!! $statusBadge !!}</div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endfor
+    @endforeach
+</div>
 
-                                                        </table>
-                                                        </div>
                                                         <div class="row">
                                                             <div class="col-md-12 col-sm-12">
                                                                 <h4>Payment through Bank:</h4><br>
@@ -1068,101 +1049,79 @@
                                                             </div>
                                                         </div>
                                                         @elseif($rows[0]->journal_short_form == "IJRTMR")
-                                                        <div style="overflow-x: auto;">
+                                                        <div class="row">
+    @foreach([$rows[0]->payment_status] as $status) 
+        @for ($i = 1; $i <= 3; $i++)
+            @php
+                $show = true;
+                if (!empty($status)) {
+                    $show = $method == $i;
+                }
 
-                                                        <table class="table table-bordered table-hover sys_table">
+                switch ($i) {
+                    case 1:
+                        $amount = "INR " . $payment_data['Indian']['IJRTMR']['withoutdoi'];
+                        $details = ['APC + ' . $gst . '% GST', 'Without DOI', 'Online Publication', 'Max. 10 to 20 pages', 'E-Certificate (All Authors)'];
+                        $label = "For Indian Author";
+                        $buttonId = "pl_JpkQFEvwU2gNfk";
+                        break;
+                    case 2:
+                        $amount = "INR " . $payment_data['Indian']['IJRTMR']['withdoi'];
+                        $details = ['APC + ' . $gst . '% GST', 'With DOI (10.59256)', 'Online Publication', 'Max. 10 to 20 pages', 'E-Certificate (All Authors)'];
+                        $label = "For Indian Author";
+                        $buttonId = "pl_M5Ez1eyaihQTLe";
+                        break;
+                    case 3:
+                        $amount = "USD " . $payment_data['Others']['IJRTMR']['withdoi'];
+                        $details = ['With DOI (10.59256)', 'Online Publication', 'Max. 10 to 20 pages', 'E-Certificate (All Authors)'];
+                        $label = "For Foreign Author";
+                        $buttonId = "pl_Jpkf3lSqoVoUyG";
+                        break;
+                }
 
-                                                            <thead>
-                                                                <tr>
-                                                                    <th class="text-center">Journal</th>
-                                                                    <th width="36%">Author</th>
-                                                                    <th>Amount</th>
-                                                                    <th>Payment Method</th>
-                                                                    <th <?php if(empty($rows[0]->payment_status)){echo 'hidden';} ?> class="text-center">Status</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr <?php if(!empty($rows[0]->payment_status)){if($method == 1){}else{echo 'hidden';}} ?>>
-                                                                    <td class="text-center">{{$rows[0]->journal_short_form}}</td>
-                                                                    <td width="36%">For Indian Author</td>
-                                                                    <td>
-                                                                    <b>INR {{$payment_data['Indian']['IJRTMR']['withoutdoi']}}</b>
-                                                                            <ul>
-                                                                            <li>APC + {{$gst}}% GST</li>
-                                                                            <li>Without DOI</li>
-                                                                            <li>Online Publication</li>
-                                                                            <li>Max. 10 to 20 pages</li>
-                                                                            <li>E-Certificate(All Authors)</li>
-                                                                        </ul>
-                                                                    </td>
-                                                                    <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_JpkQFEvwU2gNfk" async> </script> </form></td>
-                                                                    <td <?php if(empty($rows[0]->payment_status)){echo 'hidden';} ?> class="text-center">
-                                                                        @php
-                                                                        if(!empty($rows[0]->payment_status)){
-                                                                            if($paymentstatus == 'paid'){
-                                                                                echo '<span class="badge badge-pill" style="background-color:green; color:#ffffff;border:1px solid green">Paid</span>';
-                                                                            }else{
-                                                                                echo '<span class="badge badge-pill" style="background-color:red; color:#ffffff;border:1px solid red">Un Paid</span>';
-                                                                            }
-                                                                        }
-                                                                        @endphp
-                                                                    </td>
-                                                                </tr>
-                                                                <tr <?php if(!empty($rows[0]->payment_status)){if($method == 2){}else{echo 'hidden';}} ?>>
-                                                                    <td class="text-center">{{$rows[0]->journal_short_form}}</td>
-                                                                    <td width="36%">For Indian Author</td>
-                                                                    <td>
-                                                                    <b>INR {{$payment_data['Indian']['IJRTMR']['withdoi']}}</b>
-                                                                            <ul>
-                                                                            <li>APC + {{$gst}}% GST</li>
-                                                                            <li>With DOI(10.59256)</li>
-                                                                            <li>Online Publication</li>
-                                                                            <li>Max. 10 to 20 pages</li>
-                                                                            <li>E-Certificate(All Authors)</li>
-                                                                        </ul>
-                                                                    </td>
-                                                                    <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_M5Ez1eyaihQTLe" async> </script> </form></td>
-                                                                    <td <?php if(empty($rows[0]->payment_status)){echo 'hidden';} ?> class="text-center">
-                                                                        @php
-                                                                        if(!empty($rows[0]->payment_status)){
-                                                                            if($paymentstatus == 'paid'){
-                                                                                echo '<span class="badge badge-pill" style="background-color:green; color:#ffffff;border:1px solid green">Paid</span>';
-                                                                            }else{
-                                                                                echo '<span class="badge badge-pill" style="background-color:red; color:#ffffff;border:1px solid red">Un Paid</span>';
-                                                                            }
-                                                                        }
-                                                                        @endphp
-                                                                    </td>
-                                                                </tr>
-                                                                <tr <?php if(!empty($rows[0]->payment_status)){if($method == 3){}else{echo 'hidden';}} ?>>
-                                                                    <td class="text-center">{{$rows[0]->journal_short_form}}</td>
-                                                                    <td width="36%">For Foreign Author </td>
-                                                                    <td>
-                                                                    <b>USD {{$payment_data['Others']['IJRTMR']['withdoi']}}</b>
-                                                                            <ul>
-                                                                            <li>With DOI(10.59256)</li>
-                                                                            <li>Online Publication</li>
-                                                                            <li>Max. 10 to 20 pages</li>
-                                                                            <li>E-Certificate(All Authors)</li>
-                                                                        </ul>
-                                                                    </td>
-                                                                    <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Jpkf3lSqoVoUyG" async> </script> </form></td>
-                                                                    <td <?php if(empty($rows[0]->payment_status)){echo 'hidden';} ?> class="text-center">
-                                                                        @php
-                                                                        if(!empty($rows[0]->payment_status)){
-                                                                            if($paymentstatus == 'paid'){
-                                                                                echo '<span class="badge badge-pill" style="background-color:green; color:#ffffff;border:1px solid green">Paid</span>';
-                                                                            }else{
-                                                                                echo '<span class="badge badge-pill" style="background-color:red; color:#ffffff;border:1px solid red">Un Paid</span>';
-                                                                            }
-                                                                        }
-                                                                        @endphp
-                                                                    </td>
-                                                                </tr>
+                $statusBadge = '';
+                if (!empty($status)) {
+                    if ($paymentstatus == 'paid') {
+                        $statusBadge = '<span class="badge badge-pill" style="background-color:green; color:#ffffff;border:1px solid green">Paid</span>';
+                    } else {
+                        $statusBadge = '<span class="badge badge-pill" style="background-color:red; color:#ffffff;border:1px solid red">Un Paid</span>';
+                    }
+                }
+            @endphp
 
-                                                            </tbody>
-                                                        </table>
-                                                        </div>
+            @if($show)
+            <div class="col-sm-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow border">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <h5 class="card-title font-weight-bold text-primary text-center" style="color:#007bff !important">{{$rows[0]->journal_short_form}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{$label}}</h6>
+                            <p><strong>{{$amount}}</strong></p>
+                            <ul class="mb-3">
+                                @foreach($details as $detail)
+                                    <li>{{$detail}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="mb-2 d-flex justify-content-center align-content-center">
+                                <form>
+                                    <script src="https://checkout.razorpay.com/v1/payment-button.js"
+                                            data-payment_button_id="{{ $buttonId }}" async></script>
+                                </form>
+                            </div>
+                            @if(!empty($status))
+                                <div class="text-center">{!! $statusBadge !!}</div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+        @endfor
+    @endforeach
+</div>
+
                                                         <div class="row">
                                                             <div class="col-md-12 col-sm-12">
                                                                 <h4>Payment through Bank:</h4><br>
@@ -1176,101 +1135,79 @@
                                                             </div>
                                                         </div>
                                                         @elseif($rows[0]->journal_short_form == "INDJCST")
-                                                        <div style="overflow-x: auto;">
+                                                        <div class="row">
+    @foreach([$rows[0]->payment_status] as $status) 
+        @for ($i = 1; $i <= 3; $i++)
+            @php
+                $show = true;
+                if (!empty($status)) {
+                    $show = $method == $i;
+                }
 
-                                                        <table class="table table-bordered table-hover sys_table">
+                switch ($i) {
+                    case 1:
+                        $amount = "INR " . $payment_data['Indian']['INDJCST']['withoutdoi'];
+                        $details = ['APC + ' . $gst . '% GST', 'Without DOI', 'Online Publication', 'Max. 10 to 20 pages', 'E-Certificate(All Authors)'];
+                        $label = "For Indian Author";
+                        $buttonId = "pl_M5F85UY7YjjGuv";
+                        break;
+                    case 2:
+                        $amount = "INR " . $payment_data['Indian']['INDJCST']['withdoi'];
+                        $details = ['APC + ' . $gst . '% GST', 'With DOI(10.59256)', 'Online Publication', 'Max. 10 to 20 pages', 'E-Certificate(All Authors)'];
+                        $label = "For Indian Author";
+                        $buttonId = "pl_M5FAsn5wP7RItB";
+                        break;
+                    case 3:
+                        $amount = "USD " . $payment_data['Others']['INDJCST']['withdoi'];
+                        $details = ['With DOI(10.59256)', 'Online Publication', 'Max. 10 to 20 pages', 'E-Certificate(All Authors)'];
+                        $label = "For Foreign Author";
+                        $buttonId = "pl_M5FCQIre57PUpW";
+                        break;
+                }
 
-                                                            <thead>
-                                                                <tr>
-                                                                    <th class="text-center">Journal</th>
-                                                                    <th width="36%">Author</th>
-                                                                    <th>Amount</th>
-                                                                    <th>Payment Method</th>
-                                                                    <th <?php if(empty($rows[0]->payment_status)){echo 'hidden';} ?> class="text-center">Status</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr <?php if(!empty($rows[0]->payment_status)){if($method == 1){}else{echo 'hidden';}} ?>>
-                                                                    <td class="text-center">{{$rows[0]->journal_short_form}}</td>
-                                                                    <td width="36%">For Indian Author</td>
-                                                                    <td>
-                                                                    <b>INR {{$payment_data['Indian']['INDJCST']['withoutdoi']}}</b>
-                                                                            <ul>
-                                                                            <li>APC + {{$gst}}% GST</li>
-                                                                            <li>Without DOI</li>
-                                                                            <li>Online Publication</li>
-                                                                            <li>Max. 10 to 20 pages</li>
-                                                                            <li>E-Certificate(All Authors)</li>
-                                                                        </ul>
-                                                                    </td>
-                                                                    <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_M5F85UY7YjjGuv" async> </script> </form></td>
-                                                                    <td <?php if(empty($rows[0]->payment_status)){echo 'hidden';} ?> class="text-center">
-                                                                        @php
-                                                                        if(!empty($rows[0]->payment_status)){
-                                                                            if($paymentstatus == 'paid'){
-                                                                                echo '<span class="badge badge-pill" style="background-color:green; color:#ffffff;border:1px solid green">Paid</span>';
-                                                                            }else{
-                                                                                echo '<span class="badge badge-pill" style="background-color:red; color:#ffffff;border:1px solid red">Un Paid</span>';
-                                                                            }
-                                                                        }
-                                                                        @endphp
-                                                                    </td>
-                                                                </tr>
-                                                                <tr <?php if(!empty($rows[0]->payment_status)){if($method == 2){}else{echo 'hidden';}} ?>>
-                                                                    <td class="text-center">{{$rows[0]->journal_short_form}}</td>
-                                                                    <td width="36%">For Indian Author</td>
-                                                                    <td>
-                                                                    <b>INR {{$payment_data['Indian']['INDJCST']['withdoi']}}</b>
-                                                                            <ul>
-                                                                                <li>APC + {{$gst}}% GST</li>
-                                                                            <li>With DOI(10.59256)</li>
-                                                                            <li>Online Publication</li>
-                                                                            <li>Max. 10 to 20 pages</li>
-                                                                            <li>E-Certificate(All Authors)</li>
-                                                                        </ul>
-                                                                    </td>
-                                                                    <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_M5FAsn5wP7RItB" async> </script> </form></td>
-                                                                    <td <?php if(empty($rows[0]->payment_status)){echo 'hidden';} ?> class="text-center">
-                                                                        @php
-                                                                        if(!empty($rows[0]->payment_status)){
-                                                                            if($paymentstatus == 'paid'){
-                                                                                echo '<span class="badge badge-pill" style="background-color:green; color:#ffffff;border:1px solid green">Paid</span>';
-                                                                            }else{
-                                                                                echo '<span class="badge badge-pill" style="background-color:red; color:#ffffff;border:1px solid red">Un Paid</span>';
-                                                                            }
-                                                                        }
-                                                                        @endphp
-                                                                    </td>
-                                                                </tr>
-                                                                <tr <?php if(!empty($rows[0]->payment_status)){if($method == 3){}else{echo 'hidden';}} ?>>
-                                                                    <td class="text-center">{{$rows[0]->journal_short_form}}</td>
-                                                                    <td width="36%">For Foreign Author </td>
-                                                                    <td>
-                                                                    <b>USD {{$payment_data['Others']['INDJCST']['withdoi']}}</b>
-                                                                            <ul>
-                                                                            <li>With DOI(10.59256)</li>
-                                                                            <li>Online Publication</li>
-                                                                            <li>Max. 10 to 20 pages</li>
-                                                                            <li>E-Certificate(All Authors)</li>
-                                                                        </ul>
-                                                                    </td>
-                                                                    <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_M5FCQIre57PUpW" async> </script> </form></td>
-                                                                    <td <?php if(empty($rows[0]->payment_status)){echo 'hidden';} ?> class="text-center">
-                                                                        @php
-                                                                        if(!empty($rows[0]->payment_status)){
-                                                                            if($paymentstatus == 'paid'){
-                                                                                echo '<span class="badge badge-pill" style="background-color:green; color:#ffffff;border:1px solid green">Paid</span>';
-                                                                            }else{
-                                                                                echo '<span class="badge badge-pill" style="background-color:red; color:#ffffff;border:1px solid red">Un Paid</span>';
-                                                                            }
-                                                                        }
-                                                                        @endphp
-                                                                    </td>
-                                                                </tr>
+                $statusBadge = '';
+                if (!empty($status)) {
+                    if ($paymentstatus == 'paid') {
+                        $statusBadge = '<span class="badge badge-pill" style="background-color:green; color:#ffffff;border:1px solid green">Paid</span>';
+                    } else {
+                        $statusBadge = '<span class="badge badge-pill" style="background-color:red; color:#ffffff;border:1px solid red">Un Paid</span>';
+                    }
+                }
+            @endphp
 
-                                                            </tbody>
-                                                        </table>
-                                                        </div>
+            @if($show)
+            <div class="col-sm-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm border rounded-3">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <h5 class="card-title text-primary text-center" style="color:#007bff !important">{{$rows[0]->journal_short_form}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{$label}}</h6>
+                            <p class="fw-bold">{{$amount}}</p>
+                            <ul class="mb-3 ps-3">
+                                @foreach($details as $detail)
+                                    <li>{{$detail}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="mb-2 d-flex justify-content-center align-content-center">
+                                <form>
+                                    <script src="https://checkout.razorpay.com/v1/payment-button.js"
+                                            data-payment_button_id="{{ $buttonId }}" async></script>
+                                </form>
+                            </div>
+                            @if(!empty($status))
+                                <div class="text-center">{!! $statusBadge !!}</div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+        @endfor
+    @endforeach
+</div>
+
                                                         <div class="row">
                                                             <div class="col-md-12 col-sm-12">
                                                                 <h4>Payment through Bank:</h4><br>
@@ -1359,7 +1296,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12">
                                                     <hr>
-                                                    <div class="">
+                                                    <div class="" style="overflow-x: auto;">
                                                         <table class="table table-bordered table-hover sys_table">
                                                             <thead>
                                                                 <tr>
@@ -1438,7 +1375,7 @@
 
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12">
-                                                    <div class="">
+                                                    <div class="" style="overflow-x: auto;">
                                                         <table class="table table-bordered table-hover sys_table">
                                                             <thead>
                                                                 <tr>
@@ -1515,7 +1452,7 @@
 
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12">
-                                                    <div class="">
+                                                    <div class="" style="overflow-x: auto;">
                                                         <table class="table table-bordered table-hover sys_table" style="width:100%">
 
                                                             <thead>
@@ -1587,14 +1524,15 @@
 
     //   add your list here to open tour makesure pass a list
     const FirstTime  = 1;
-
+    const LOCAL_STORAGE_KEY = 'tourCancelled';
+    const tourState = localStorage.getItem(LOCAL_STORAGE_KEY);
     const tours = ['.tour1', '.tour2', '.tour3', '.tour4'];
     
     function getCurrentIndex() {
-        
         return tours.findIndex(selector => $(selector).find('.tour_details').is(':visible'));
     }
     
+
     $('.nextTourBtn').on('click', function () {
         const currentIndex = getCurrentIndex();
         
@@ -1614,10 +1552,20 @@
             $(tours[currentIndex]).find('a').toggleClass("tour-container")            
         }
     });
+
+    // handel the cancel btn 
+    $('.cancelTourBtn').on('click', function () {
+            const currentIndex = getCurrentIndex();
+            if (currentIndex !== -1) {
+                $(tours[currentIndex]).find('.tour_details').addClass("d-none");
+                $(tours[currentIndex]).find('a').removeClass("tour-container");
+            }
+            localStorage.setItem(LOCAL_STORAGE_KEY, 'true');
+    });
+
     
     // Optional: initialize only the first one as visible
-    // $('.tour_details').hide();
-    if (FirstTime==0) {
+    if (FirstTime==1 && !tourState) {
         $('.tour1 .tour_details').toggleClass("d-none");
         $(tours[getCurrentIndex()]).find('a').toggleClass("tour-container")
     }
