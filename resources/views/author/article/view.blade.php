@@ -28,6 +28,16 @@
     color: #fff !important;
 }
 
+.payment-btn{
+    color: #fff !important;
+    background: #007bff;
+    border:none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.payment-btn:hover{
+    background: #009ff0;
+}
 </style>
 <div class="row">
     @if (session('alert'))
@@ -930,10 +940,11 @@
                         </div>
                         <div>
                             <div class="mb-2 d-flex justify-content-center align-content-center">
-                                <form>
+                                <!-- <form>
                                     <script src="https://checkout.razorpay.com/v1/payment-button.js"
                                             data-payment_button_id="{{ $buttonId }}" async></script>
-                                </form>
+                                </form> -->
+                                <a href="https://rzp.io/rzp/cgyflY4L"><button class="py-1 px-3 payment-btn" >Pay Now</button></a>
                             </div>
                             @if(!empty($status))
                                 <div class="text-center">{!! $statusBadge !!}</div>
