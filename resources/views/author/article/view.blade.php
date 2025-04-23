@@ -1556,7 +1556,7 @@
           $(tours[nextIndex]).find('a').addClass("tour-container");
         } else {
           // End of tour
-          localStorage.setItem(LOCAL_STORAGE_KEY, 'true');
+        //   localStorage.setItem(LOCAL_STORAGE_KEY, 'true');
           console.log("Tour completed and state saved.");
         }
       }
@@ -1573,7 +1573,7 @@
     });
 
     // Only show if not cancelled
-    if (FirstTime == 1 && !tourState) {
+    if (FirstTime <= 3 && !tourState) {
       $('.tour1 .tour_details').removeClass("d-none");
       $(tours[0]).find('a').addClass("tour-container");
     }
