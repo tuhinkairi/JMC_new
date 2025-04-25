@@ -271,79 +271,19 @@ td, th {
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title">Article List</h4>
-
-                      <!-- Data Table Start -->
-                    <!-- <div class="" id="table" style="overflow-x:auto;">
-                        <table id="basic-datatable" class="table table-striped table-hover table-white nowrap dashboard_fix-table" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th class="hide-column">No</th>
-                                    <th class="id_box" >ID</th>
-                                    <th class="text-left title_box">Title</th>
-                                    <th class="author_box">Author</th>
-                                   
-                                    <th class="satus_box">Status</th>
-                                    <th class="paymeny_box">Payment</th>
-                                    <th class="created_box">Created On</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $count = 1;
-                                @endphp
-                                @foreach( $rows as $row )
-                                <tr>
-
-                                    <td class="hide-column">{{ $count++ }}</td>
-                                    <td class="id_box" style="width: 150px;"><a href="{{url('dashboard/admin/submission/show/'.$row->id)}}">{{$row->journal_short_form}}-0000{{ $row->id }}</td>
-                                    <td class="small-td text-left title_box">{{ $row->title }}</td>
-                                    <td class="author_box">{{ $row->authorname }}</td>
-                    
-                          
-                                    <td class="satus_box"><span class="badge badge-pill" style="background-color:{{$row->colourflag}}; color:#ffffff;border:1px solid {{$row->colourflag}}">{{$row->statusname}}</span></td>
-                                    {{-- <td>{{ $row->statusname }}</td> --}}
-                                    <td class="paymeny_box">
-                                        @php
-                                                    if(!empty($row->payment_status)){
-                                                        $data = $row->payment_status;
-                                                        $paymentstatus = strtok($data, '-');
-
-                                                    }else{
-                                                        $paymentstatus = "null";
-                                                    }
-                                        @endphp
-
-                                        @if ($paymentstatus == "paid")
-                                            <span class="badge badge-pill" style="background-color:green; color:#ffffff;border:1px solid green">Paid</span>
-                                        @elseif ($paymentstatus == "unpaid")
-                                            <span class="badge badge-pill" style="background-color:red; color:#ffffff;border:1px solid red">Un Paid</span>
-                                        @else
-                                            <span class="badge badge-pill" style="background-color:blue; color:#ffffff;border:1px solid blue">Not Started</span>
-                                        @endif
-                                    </td>
-                                    <td class="created_box">{{ $row->created_at }}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div> -->
-
-
-
-
                     <div class="" id="table" style="overflow-x:auto;">
                         <table id="basic-datatable" class="table table-striped table-hover table-white nowrap dashboard_fix-table" style="width:100%">
                             <thead>
                                 <tr>
                                     <th class="hide-column">No</th>
-                                    <th class="id_box">ID</th>
-                                    <th class="text-left title_box" style="width: 600px;">Title</th><!-- Increased width -->
+                                    <th class="id_box" style="min-width: 125px;">ID</th>
+                                    <th class="title_box text-center" style="min-width: 150px;">Title</th><!-- Increased width -->
 
-                                    <th class="text-left" style="width: 50px;">Mode</th>
-                                    <th class="author_box" style="width: 100px;">Author</th> <!-- Adjusted width -->
-                                    <th class="satus_box" style="width: 50px;">Status</th> <!-- Adjusted width -->
-                                    <th class="paymeny_box" style="width: 50px;">Payment</th> <!-- Adjusted width -->
-                                    <th class="created_box" style="width: 100px;">Created On</th> <!-- Adjusted width -->
+                                    <th class="text-left text-center" style="min-width: 100px;">Mode</th>
+                                    <th class="author_box text-center" style="min-width: 100px;">Author</th> <!-- Adjusted width -->
+                                    <th class="satus_box text-center" style="min-width: 50px;">Status</th> <!-- Adjusted width -->
+                                    <th class="paymeny_box text-center" style="min-width: 50px;">Payment</th> <!-- Adjusted width -->
+                                    <th class="created_box text-center" style="min-width: 100px;">Created On</th> <!-- Adjusted width -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -352,24 +292,24 @@ td, th {
                                 @endphp
                                 @foreach( $rows as $row )
                                 <tr>
-                                    <td class="hide-column">{{ $count++ }}</td>
-                                    <td class="id_box" style="width: 150px;"><a href="{{url('dashboard/admin/submission/show/'.$row->id)}}">{{$row->journal_short_form}}-0000{{ $row->id }}</a></td>
-                                    <td class="small-td text-left title_box" style="width: 600px;">{{ $row->title }}</td> <!-- Increased width -->
+                                    <td class="hide-column text-center">{{ $count++ }}</td>
+                                    <td class="id_box text-center" style="width: 150px;"><a href="{{url('dashboard/admin/submission/show/'.$row->id)}}">{{$row->journal_short_form}}-0000{{ $row->id }}</a></td>
+                                    <td class="small-td text-center title_box">{{ $row->title }}</td> <!-- Increased width -->
                                     <!-- <td class="small-td text-left" style="width: 50px;"><i class="fas fa-walking"></i></td> -->
                                     
                                         @if($row->processing_type == 1)
-                                            <td class="small-td text-left" style="width: 50px;">Normal</td>
+                                            <td class="small-td text-center" >Normal</td>
                                         @elseif($row->processing_type == 2)
-                                            <td class="small-td text-left" style="width: 50px;">Fast</td>
+                                            <td class="small-td text-center" >Fast</td>
                                         @elseif($row->processing_type == 3)
-                                            <td class="small-td text-left" style="width: 50px;">Express</td>
+                                            <td class="small-td text-center" >Express</td>
                                         @endif
                                     
                                     
                                     
-                                    <td class="author_box" style="width: 100px;">{{ $row->authorname }}</td> <!-- Adjusted width -->
-                                    <td class="satus_box" style="width: 50px;"><span class="badge badge-pill" style="background-color:{{$row->colourflag}}; color:#ffffff;border:1px solid {{$row->colourflag}}">{{$row->statusname}}</span></td>
-                                    <td class="paymeny_box" style="width: 50px;">
+                                    <td class="author_box text-center" >{{ $row->authorname }}</td> <!-- Adjusted width -->
+                                    <td class="satus_box text-center" ><span class="badge badge-pill" style="background-color:{{$row->colourflag}}; color:#ffffff;border:1px solid {{$row->colourflag}}">{{$row->statusname}}</span></td>
+                                    <td class="paymeny_box text-center" style="width: 50px;">
                                         @php
                                             if(!empty($row->payment_status)){
                                                 $data = $row->payment_status;
@@ -387,7 +327,7 @@ td, th {
                                             <span class="badge badge-pill" style="background-color:blue; color:#ffffff;border:1px solid blue">Not Started</span>
                                         @endif
                                     </td>
-                                    <td class="created_box" style="width: 100px;">{{ $row->created_at }}</td> <!-- Adjusted width -->
+                                    <td class="created_box text-center" style="width: 100px;">{{ $row->created_at }}</td> <!-- Adjusted width -->
                                 </tr>
                                 @endforeach
                             </tbody>
