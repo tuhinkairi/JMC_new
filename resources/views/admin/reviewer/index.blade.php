@@ -35,7 +35,7 @@
 
                   <!-- Data Table Start -->
                   <div class="table-responsive">
-                  <table id="basic-datatable" class="table table-striped table-hover table-white nowrap" style="width:100%">
+                  <table id="basic-datatable" class="table table-striped table-hover table-white nowrap text-center" style="width:100%">
     <thead>
         <tr>
             <th>S.No</th>
@@ -45,7 +45,7 @@
             <th>Email ID</th>
             <th>Phone No</th>
          
-            <th colspan="3">Review Article Details</th>
+            <th>Review Article Details</th>
            
             <th>Action</th>
         </tr>
@@ -53,18 +53,18 @@
     <tbody>
         @foreach($rows as $key => $row)
             <tr>
-                <td rowspan="4">{{ $key + 1 }}</td>
-                <td rowspan="4">{{ $row->reviewerid }}</td>
-                <td rowspan="4">{{ $row->name }}</td>
-                <td rowspan="4">{{ $row->department }}</td>
-                <td rowspan="4">{{ $row->email }}</td>
-                <td rowspan="4">{{ $row->phone }}</td>
+                <td>{{ $key + 1 }}</td>
+                <td>{{ $row->reviewerid }}</td>
+                <td>{{ $row->name }}</td>
+                <td>{{ $row->department }}</td>
+                <td>{{ $row->email }}</td>
+                <td>{{ $row->phone }}</td>
         
                 @php
                     $articles = array_values($assignedArticle[$row->id] ?? []);
                 @endphp
+                    <td class="d-flex text-nowrap flex-column">
                 @for($i = 0; $i < 3; $i++)
-                    <td>
                         @if(isset($articles[$i]))
                             @foreach ($articles[$i] as $sform)
                                 <a href="{{ url('dashboard/admin/submission/show/'.$sform->id) }}">
@@ -72,31 +72,31 @@
                                 </a><br>
                             @endforeach
                         @endif
+                        @endfor
                     </td>
-                @endfor
-                <td rowspan="4">
-                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal-{{ $row->id }}">
-                        <i class="fas fa-eye"></i>
-                    </button>
-                    <!-- Include Show modal -->
-                    @include('admin.'.$url.'.show')
+                <td class="">
+                    <div class="d-flex justify-content-around">
 
-                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editModal-{{ $row->id }}">
+                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal-{{ $row->id }}">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <!-- Include Show modal -->
+                        @include('admin.'.$url.'.show')
+                        
+                    <button type="button" class="btn btn-success btn-sm mx-1" data-toggle="modal" data-target="#editModal-{{ $row->id }}">
                         <i class="fas fa-edit"></i>
                     </button>
                     <!-- Include Show modal -->
                     @include('admin.'.$url.'.edit')
-
+                    
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal-{{ $row->id }}">
                         <i class="fas fa-trash-alt"></i>
                     </button>
+                </div>
                     <!-- Include Delete modal -->
                     @include('admin.inc.delete_reviewer')
                 </td>
             </tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
         @endforeach
     </tbody>
 </table>

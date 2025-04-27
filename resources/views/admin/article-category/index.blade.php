@@ -36,14 +36,14 @@
 
                   <!-- Data Table Start -->
                   <div class="table-responsive">
-                    <table id="basic-datatable" class="table table-striped table-hover table-white nowrap" style="width:100%">
+                    <table id="basic-datatable" class="table table-striped table-hover table-white nowrap text-center" style="width:100%">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Title</th>
-                                <th>Show To Home</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th style="white-space: nowrap;">No</th>
+                                <th style="white-space: nowrap;">Title</th>
+                                <th style="white-space: nowrap;">Show To Home</th>
+                                <th style="white-space: nowrap;">Status</th>
+                                <th style="white-space: nowrap;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -65,15 +65,15 @@
                                     <span class="badge badge-danger badge-pill">Inactive</span>
                                     @endif
                                 </td>
-                                <td>
+                                <td class="d-flex justify-content-center">
                                     <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal-{{ $row->id }}">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                     <!-- Include Show modal -->
                                     @include('admin.'.$url.'.show')
 
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal-{{ $row->id }}">
-                                        <i class="far fa-edit"></i>
+                                    <button type="button" class="btn btn-primary btn-sm mx-1" data-toggle="modal" data-target="#editModal-{{ $row->id }}">
+                                        <i class="far fa-edit "></i>
                                     </button>
                                     <!-- Include Edit modal -->
                                     @include('admin.'.$url.'.edit')

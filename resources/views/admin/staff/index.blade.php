@@ -36,14 +36,14 @@
 
                   <!-- Data Table Start -->
                   <div class="table-responsive">
-                    <table id="basic-datatable" class="table table-striped table-hover table-white nowrap" style="width:100%">
+                    <table id="basic-datatable" class="table table-striped table-hover table-white nowrap text-center" style="width:100%">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Action</th>
+                                <th style="white-space: nowrap;">No</th>
+                                <th style="white-space: nowrap;">Name</th>
+                                <th style="white-space: nowrap;">Email</th>
+                                <th style="white-space: nowrap;">Phone</th>
+                                <th style="white-space: nowrap;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,14 +53,14 @@
                                 <td>{{ $row->name }}</td>
                                 <td>{{ $row->email }}</td>
                                 <td>{{ $row->phone }}</td>
-                                <td>
+                                <td class="d-flex justify-content-center">
                                     <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal-{{ $row->id }}">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                     <!-- Include Show modal -->
                                     @include('admin.'.$url.'.show')
 
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal-{{ $row->id }}">
+                                    <button type="button" class="btn btn-danger btn-sm ml-1" data-toggle="modal" data-target="#deleteModal-{{ $row->id }}">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                     <!-- Include Delete modal -->
