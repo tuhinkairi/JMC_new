@@ -2549,4 +2549,24 @@ $('#payment_status_3').change(function(){
     })
 });
 </script>
+<script>
+$(document).ready(function () {
+    const tabStorageKey = "activeNavTab";
+
+    // On click, store the href of the active tab
+    $('.nav-link[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        const activeTab = $(e.target).attr('href'); // e.g., "#tasks"
+        localStorage.setItem(tabStorageKey, activeTab);
+    });
+
+    // On page load, check localStorage and activate the stored tab
+    const lastTab = localStorage.getItem(tabStorageKey);
+    if (lastTab) {
+        const targetTab = $(`.nav-link[href="${lastTab}"]`);
+        if (targetTab.length) {
+            targetTab.tab('show');
+        }
+    }
+});
+</script>
 @endsection
