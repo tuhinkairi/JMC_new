@@ -805,5 +805,51 @@ $('#title_name').change(function(){
   });
 </script>
 
+<script>
+    $(document).ready(function() {
+    // Capture input changes
+    $('#paper_id, #author_name, #title_name').on('input', function() {
+        filterTable();
+    });
+
+    function filterTable() {
+        // Get the filter values
+        var paperId = $('#paper_id').val().toLowerCase();
+        var authorName = $('#author_name').val().toLowerCase();
+        var titleName = $('#title_name').val().toLowerCase();
+
+        // Loop through all table rows and apply filter
+        $('#basic-datatable tbody tr').each(function() {
+            var row = $(this);
+            
+            // Get the cell values for this row
+            var rowPaperId = row.find('.id_box').text().toLowerCase();
+            var rowAuthorName = row.find('.author_box').text().toLowerCase();
+            var rowTitleName = row.find('.title_box').text().toLowerCase();
+
+            // Check if the row matches all filter criteria
+            var matchesFilter = true;
+
+            if (paperId && !rowPaperId.includes(paperId)) {
+                matchesFilter = false;
+            }
+            if (authorName && !rowAuthorName.includes(authorName)) {
+                matchesFilter = false;
+            }
+            if (titleName && !rowTitleName.includes(titleName)) {
+                matchesFilter = false;
+            }
+
+            // Show or hide the row based on the filter match
+            if (matchesFilter) {
+                row.show();
+            } else {
+                row.hide();
+            }
+        });
+    }
+});
+
+</script>
 
 @endsection
