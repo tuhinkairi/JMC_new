@@ -49,6 +49,9 @@ option[style*="display:none"] {
       border-radius: 3px;
       box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
       overflow: hidden;
+      min-width: 140px;
+      max-width: 140px;
+      text-align: center;
     }
 
     .kanban-column-header-not-started {
@@ -135,7 +138,16 @@ option[style*="display:none"] {
   color: #fff;
 }
 
-
+.payment-btn{
+    color: #fff !important;
+    background: #007bff;
+    border:none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.payment-btn:hover{
+    background: #009ff0;
+}
 </style>
 
 <div class="row">
@@ -473,8 +485,8 @@ option[style*="display:none"] {
                                                 </div>
                                             </div>
                                             <div id="tasks" class="tab-pane fade ib-tab-box">
-                                                <div class="row">
-                                                    <div class="col-xl-4 col-lg-4">
+                                                <div class="row col-12">
+                                                    <div class="col-xl-4 col-lg-4 col-12">
                                                         <form action="{{ URL::route($url.'.task', $rows[0]->id) }}" method="post" enctype="multipart/form-data">
                                                             @csrf
                                                             @method('PUT')
@@ -516,10 +528,10 @@ option[style*="display:none"] {
                                                         </form>
                                                     </div>
 
-                                                    <div class="col-md-5 col-sm-5">
+                                                    <div class="col-lg-5">
                                                         <h4>All Tasks</h4>
                                                         <hr>
-                                                        <div class="col-xl-10 col-lg-10">
+                                                        <div class="">
                                                             <table class="table table-bordered table-hover sys_table">
                                                                 <thead>
                                                                     <tr>
@@ -554,8 +566,7 @@ option[style*="display:none"] {
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-3 col-sm-3">
-                                                        <div style="float:right;">
+                                                    <div class="col-lg-3">
                                                             <h4>Task Overview</h4>
                                                             <p>1. Editorial check</p>
                                                             <p>2. Plagiarism Check</p>
@@ -564,12 +575,11 @@ option[style*="display:none"] {
                                                             <p>5. Layout Editing</p>
                                                             <p>6. Galley Correction</p>
                                                             <p>7. Publishing</p>
-                                                        </div>
                                                     </div>
 
                                                  
                                                 </div>
-                                                <div class="kanban-board">
+                                                <div class="kanban-board " style="overflow-x: auto;">
                                                     <div class="kanban-column" data-column-name="Not Started">
                                                       <div class="kanban-column-header-not-started">Not Started</div>
                                                       <div class="kanban-column-cards">
@@ -1079,6 +1089,7 @@ option[style*="display:none"] {
                                                 <div class="row">
                                                     <div class="col-md-12 col-sm-12">
                                                         <h4>Review Table</h4>
+                                                        <div style="overflow-x:auto">
                                                         <table class="table table-bordered table-hover sys_table">
                                                             <thead>
                                                                 <tr>
@@ -1156,10 +1167,12 @@ option[style*="display:none"] {
                                                                 @endforeach
                                                             </tbody>
                                                         </table>
+                                                        </div>
+
                                                     </div>
                                                 </div>
 
-                                                <div class="kanban-board">
+                                                <div class="kanban-board" style="overflow-x: auto;">
                                                     <div class="kanban-column" id="kanban" status-name="Not Starded">
                                                       <div class="kanban-column-header-not-started">Not Started</div>
                                                       <div class="kanban-column-cards">
@@ -1405,117 +1418,83 @@ option[style*="display:none"] {
                                                     @endphp
                                                     <div class="col-md-12 col-sm-12">
                                                         <div class="">
-                                                            @if ($rows[0]->journal_short_form == "IJIRE")
-                                                            <table class="table table-bordered table-hover sys_table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th class="text-center">Journal</th>
-                                                                        <th width="36%">Author</th>
-                                                                        <th>Amount</th>
-                                                                        <th>Payment Method</th>
-                                                                        <th class="text-center">Status</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="text-center" rowspan="3">{{$rows[0]->journal_short_form}}</td>
-                                                                        <td width="50%">For Indian Author</td>
-                                                                        <td width="50%">
-                                                                            <b>INR {{$payment_data['Indian']['IJIRE']['withoutdoi']}}</b>
-                                                                            <ul>
-                                                                            <li>APC {{$gst}}% GST</li>
-                                                                                <li>Without DOI</li>
-                                                                                <li>Online Publication</li>
-                                                                                <li>Max. 10 to 20 pages</li>
-                                                                                <li>E-Certificate(All Authors)</li>
-                                                                            </ul>
-                                                                        </td>
-                                                                        <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_IipnD9qYVU6uIJ" async> </script> </form></td>
-                                                                        <td>
-                                                                            <select class="custom-select" id="payment_status_1">
-                                                                                @php
-                                                                                    if(!empty($rows[0]->payment_status)){
-                                                                                        if($method == 1){
-                                                                                            if($paymentstatus == 'paid'){
-                                                                                                echo '<option value="paid-1">Paid</option>';
-                                                                                            }else{
-                                                                                                echo '<option value="unpaid-1">Un Paid</option>';
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                @endphp
-                                                                                <option value=" "></option>
-                                                                                <option value="paid-1">Paid</option>
-                                                                                <option value="unpaid-1">Un paid</option>
-                                                                            </select>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td width="50%">For Indian Author</td>
-                                                                        <td>
-                                                                            <b>INR {{$payment_data['Indian']['IJIRE']['withdoi']}}</b>
-                                                                            <ul>
-                                                                            <li>APC {{$gst}}% GST</li>
-                                                                                <li>With DOI(10.59256)</li>
-                                                                                <li>Online Publication</li>
-                                                                                <li>Max. 10 to 20 pages</li>
-                                                                                <li>E-Certificate(All Authors)</li>
-                                                                            </ul>
-                                                                        </td>
-                                                                        <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_LX1iJCBW4Sof5t" async> </script> </form></td>
-                                                                        <td class="text-center">
-                                                                            <select class="custom-select" id="payment_status_2">
-                                                                                @php
-                                                                                    if(!empty($rows[0]->payment_status)){
-                                                                                        if($method == 2){
-                                                                                            if($paymentstatus == 'paid'){
-                                                                                                echo '<option value="paid-1">Paid</option>';
-                                                                                            }else{
-                                                                                                echo '<option value="unpaid-1">Un Paid</option>';
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                @endphp
-                                                                                <option value=" "></option>
-                                                                                <option value="paid-2">Paid</option>
-                                                                                <option value="unpaid-2">Un paid</option>
-                                                                            </select>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td width="50%">For Foreign Author </td>
-                                                                        <td>
-                                                                            <b>USD {{$payment_data['Others']['IJIRE']['withdoi']}}</b>
-                                                                            <ul>
-                                                                                <li>With DOI(10.59256)</li>
-                                                                                <li>Online Publication</li>
-                                                                                <li>Max. 10 to 20 pages</li>
-                                                                                <li>E-Certificate(All Authors)</li>
-                                                                            </ul>
-                                                                        </td>
-                                                                        <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_IipweXrOIDJtu1" async> </script> </form></td>
-                                                                        <td class="text-center">
-                                                                            <select class="custom-select" id="payment_status_3">
-                                                                                @php
-                                                                                    if(!empty($rows[0]->payment_status)){
-                                                                                        if($method == 3){
-                                                                                            if($paymentstatus == 'paid'){
-                                                                                                echo '<option value="paid-1">Paid</option>';
-                                                                                            }else{
-                                                                                                echo '<option value="unpaid-1">Un Paid</option>';
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                @endphp
-                                                                                <option value=" "></option>
-                                                                                <option value="paid-3">Paid</option>
-                                                                                <option value="unpaid-3">Un paid</option>
-                                                                            </select>
-                                                                        </td>
-                                                                    </tr>
+                                                            @if ($rows[0]->journal_short_form == "IJIRE")w
+                                                            <div class="row">
+    @foreach([$rows[0]->payment_status] as $status) 
+        @for ($i = 1; $i <= 3; $i++)
+            @php
+                $show = true;
+                if (!empty($status)) {
+                    $show = $method == $i;
+                }
 
-                                                                </tbody>
-                                                            </table>
+                switch ($i) {
+                    case 1:
+                        $amount = "INR " . $payment_data['Indian']['IJIRE']['withoutdoi'];
+                        $details = ['APC ' . $gst . '% GST', 'Without DOI', 'Online Publication', 'Max. 10 to 20 pages', 'E-Certificate (All Authors)'];
+                        $label = "For Indian Author";
+                        $buttonId = "pl_IipnD9qYVU6uIJ";
+                        break;
+                    case 2:
+                        $amount = "INR " . $payment_data['Indian']['IJIRE']['withdoi'];
+                        $details = ['APC ' . $gst . '% GST', 'With DOI (10.59256)', 'Online Publication', 'Max. 10 to 20 pages', 'E-Certificate (All Authors)'];
+                        $label = "For Indian Author";
+                        $buttonId = "pl_LX1iJCBW4Sof5t";
+                        break;
+                    case 3:
+                        $amount = "USD " . $payment_data['Others']['IJIRE']['withdoi'];
+                        $details = ['With DOI (10.59256)', 'Online Publication', 'Max. 10 to 20 pages', 'E-Certificate (All Authors)'];
+                        $label = "For Foreign Author";
+                        $buttonId = "pl_IipweXrOIDJtu1";
+                        break;
+                }
+
+                $statusBadge = '';
+                if (!empty($status)) {
+                    if ($paymentstatus == 'paid') {
+                        $statusBadge = '<span class="badge badge-pill" style="background-color:green; color:#ffffff;border:1px solid green">Paid</span>';
+                    } else {
+                        $statusBadge = '<span class="badge badge-pill" style="background-color:red; color:#ffffff;border:1px solid red">Un Paid</span>';
+                    }
+                }
+            @endphp
+
+            @if($show)
+                <div class="col-sm-6 col-lg-4 mb-4">
+                    <div class="card h-100 shadow border">
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div>
+                                <h5 class="card-title font-weight-bold text-primary text-center" style="color:#007bff !important">
+                                    {{$rows[0]->journal_short_form}}
+                                </h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{$label}}</h6>
+                                <p><strong>{{$amount}}</strong></p>
+                                <ul class="mb-3">
+                                    @foreach($details as $detail)
+                                        <li>{{$detail}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="mb-2 d-flex justify-content-center align-content-center">
+                                <!-- <form>
+                                    <script src="https://checkout.razorpay.com/v1/payment-button.js"
+                                            data-payment_button_id="{{ $buttonId }}" async></script>
+                                </form> -->
+                                    <a href="https://rzp.io/rzp/cgyflY4L"><button class="py-1 px-3 payment-btn" >Pay Now</button></a>
+                                </div>
+                                @if(!empty($status))
+                                    <div class="text-center">{!! $statusBadge !!}</div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endfor
+    @endforeach
+</div>
+
                                                             <div class="row">
                                                     <div class="col-md-12 col-sm-12">
                                                         <h4>Payment through Bank:</h4><br>
@@ -1529,117 +1508,99 @@ option[style*="display:none"] {
                                                     </div>
                                                 </div>
                                                             @elseif($rows[0]->journal_short_form == "IJSREAT")
-                                                            <table class="table table-bordered table-hover sys_table">
+                                                            <div class="row">
+    @foreach([$rows[0]->payment_status] as $status)
+        @for ($i = 1; $i <= 3; $i++)
+            @php
+                $show = true;
+                if (!empty($status)) {
+                    $show = $method == $i;
+                }
 
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th class="text-center">Journal</th>
-                                                                        <th width="36%">Author</th>
-                                                                        <th>Amount</th>
-                                                                        <th>Payment Method</th>
-                                                                        <th class="text-center">Status</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td rowspan="3" style="text-align: center;text-align: center;">{{$rows[0]->journal_short_form}}</td>
-                                                                        <td width="50%">For Indian Author</td>
-                                                                        <td width="50%">
-                                                                            <b>INR {{$payment_data['Indian']['IJSREAT']['withoutdoi']}}</b>
-                                                                            <ul>
-                                                                            <li>APC {{$gst}}% GST</li>
-                                                                                <li>Without DOI</li>
-                                                                                <li>Online Publication</li>
-                                                                                <li>Max. 10 to 20 pages</li>
-                                                                                <li>E-Certificate(All Authors)</li>
-                                                                            </ul>
-                                                                        </td>
-                                                                        <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_M5F2CxmT6aHnMg" async> </script> </form></td>
-                                                                        <td class="text-center">
-                                                                            <select class="custom-select" id="payment_status_1">
-                                                                                @php
-                                                                                    if(!empty($rows[0]->payment_status)){
-                                                                                        if($method == 1){
-                                                                                            if($paymentstatus == 'paid'){
-                                                                                                echo '<option value="paid-1">Paid</option>';
-                                                                                            }else{
-                                                                                                echo '<option value="unpaid-1">Un Paid</option>';
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                @endphp
-                                                                                <option value=" "></option>
-                                                                                <option value="paid-1">Paid</option>
-                                                                                <option value="unpaid-1">Un paid</option>
-                                                                            </select>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td width="50%">For Indian Author</td>
-                                                                        <td>
-                                                                            <b>INR {{$payment_data['Indian']['IJSREAT']['withdoi']}}</b>
-                                                                            <ul>
-                                                                            <li>APC {{$gst}}% GST</li>
-                                                                                <li>With DOI(10.59256)</li>
-                                                                                <li>Online Publication</li>
-                                                                                <li>Max. 10 to 20 pages</li>
-                                                                                <li>E-Certificate(All Authors)</li>
-                                                                            </ul>
-                                                                        </td>
-                                                                        <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_M5F4CjwVqlcI0D" async> </script> </form></td>
-                                                                        <td class="text-center">
-                                                                            <select class="custom-select" id="payment_status_2">
-                                                                                @php
-                                                                                    if(!empty($rows[0]->payment_status)){
-                                                                                        if($method == 2){
-                                                                                            if($paymentstatus == 'paid'){
-                                                                                                echo '<option value="paid-1">Paid</option>';
-                                                                                            }else{
-                                                                                                echo '<option value="unpaid-1">Un Paid</option>';
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                @endphp
-                                                                                <option value=" "></option>
-                                                                                <option value="paid-2">Paid</option>
-                                                                                <option value="unpaid-2">Un paid</option>
-                                                                            </select>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td width="50%">For Foreign Author </td>
-                                                                        <td>
-                                                                            <b>USD {{$payment_data['Others']['IJSREAT']['withdoi']}}</b>
-                                                                            <ul>
-                                                                                <li>With DOI(10.59256)</li>
-                                                                                <li>Online Publication</li>
-                                                                                <li>Max. 10 to 20 pages</li>
-                                                                                <li>E-Certificate(All Authors)</li>
-                                                                            </ul>
-                                                                        </td>
-                                                                        <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_M5F5sakrcOOelN" async> </script> </form></td>
-                                                                        <td class="text-center">
-                                                                            <select class="custom-select" id="payment_status_3">
-                                                                                @php
-                                                                                    if(!empty($rows[0]->payment_status)){
-                                                                                        if($method == 3){
-                                                                                            if($paymentstatus == 'paid'){
-                                                                                                echo '<option value="paid-1">Paid</option>';
-                                                                                            }else{
-                                                                                                echo '<option value="unpaid-1">Un Paid</option>';
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                @endphp
-                                                                                <option value=" "></option>
-                                                                                <option value="paid-3">Paid</option>
-                                                                                <option value="unpaid-3">Un paid</option>
-                                                                            </select>
-                                                                        </td>
-                                                                    </tr>
+                switch ($i) {
+                    case 1:
+                        $amount = "INR " . $payment_data['Indian']['IJSREAT']['withoutdoi'];
+                        $details = [
+                            'APC + ' . $gst . '% GST',
+                            'Without DOI',
+                            'Online Publication',
+                            'Max. 10 to 20 pages',
+                            'E-Certificate (All Authors)'
+                        ];
+                        $label = "For Indian Author";
+                        $buttonId = "pl_M5F2CxmT6aHnMg";
+                        break;
+                    case 2:
+                        $amount = "INR " . $payment_data['Indian']['IJSREAT']['withdoi'];
+                        $details = [
+                            'APC + ' . $gst . '% GST',
+                            'With DOI (10.59256)',
+                            'Online Publication',
+                            'Max. 10 to 20 pages',
+                            'E-Certificate (All Authors)'
+                        ];
+                        $label = "For Indian Author";
+                        $buttonId = "pl_M5F4CjwVqlcI0D";
+                        break;
+                    case 3:
+                        $amount = "USD " . $payment_data['Others']['IJSREAT']['withdoi'];
+                        $details = [
+                            'With DOI (10.59256)',
+                            'Online Publication',
+                            'Max. 10 to 20 pages',
+                            'E-Certificate (All Authors)'
+                        ];
+                        $label = "For Foreign Author";
+                        $buttonId = "pl_M5F5sakrcOOelN";
+                        break;
+                }
 
-                                                                </tbody>
-                                                            </table>
+                $statusBadge = '';
+                if (!empty($status)) {
+                    if ($paymentstatus == 'paid') {
+                        $statusBadge = '<span class="badge badge-success badge-pill">Paid</span>';
+                    } else {
+                        $statusBadge = '<span class="badge badge-danger badge-pill">Un Paid</span>';
+                    }
+                }
+            @endphp
+
+            @if($show)
+                <div class="col-sm-6 col-lg-4 mb-4">
+                    <div class="card h-100 shadow-sm border">
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div>
+                                <h5 class="card-title text-primary text-center font-weight-bold" style="color: #007bff !important;">
+                                    {{ $rows[0]->journal_short_form }}
+                                </h5>
+                                <h6 class="card-subtitle text-muted text-center mb-3">{{ $label }}</h6>
+                                <p class="text-center"><strong>{{ $amount }}</strong></p>
+                                <ul class="list-unstyled">
+                                    @foreach($details as $detail)
+                                        <li>• {{ $detail }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div>
+                            <div class="mb-2 d-flex justify-content-center align-content-center">
+                                <!-- <form>
+                                    <script src="https://checkout.razorpay.com/v1/payment-button.js"
+                                            data-payment_button_id="{{ $buttonId }}" async></script>
+                                </form> -->
+                                <a href="https://rzp.io/rzp/cgyflY4L"><button class="py-1 px-3 payment-btn" >Pay Now</button></a>
+                            </div>
+                                @if(!empty($status))
+                                    <div class="text-center">{!! $statusBadge !!}</div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endfor
+    @endforeach
+</div>
+
                                                             <div class="row">
                                                     <div class="col-md-12 col-sm-12">
                                                         <h4>Payment through Bank:</h4><br>
@@ -1653,117 +1614,97 @@ option[style*="display:none"] {
                                                     </div>
                                                 </div>
                                                             @elseif($rows[0]->journal_short_form == "IJRTMR")
-                                                            <table class="table table-bordered table-hover sys_table">
+                                                            <div class="row">
+    @foreach([$rows[0]->payment_status] as $status)
+        @for ($i = 1; $i <= 3; $i++)
+            @php
+                $show = true;
+                if (!empty($status)) {
+                    $show = $method == $i;
+                }
 
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th class="text-center">Journal</th>
-                                                                        <th>Author</th>
-                                                                        <th>Amount</th>
-                                                                        <th>Payment Method</th>
-                                                                        <th class="text-center">Status</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td rowspan="3" class="text-center">{{$rows[0]->journal_short_form}}</td>
-                                                                        <td width="50%">For Indian Author</td>
-                                                                        <td width="50%">
-                                                                           <b>INR {{$payment_data['Indian']['IJRTMR']['withoutdoi']}}</b>
-                                                                            <ul>
-                                                                            <li>APC {{$gst}}% GST</li>
-                                                                                <li>Without DOI</li>
-                                                                                <li>Online Publication</li>
-                                                                                <li>Max. 10 to 20 pages</li>
-                                                                                <li>E-Certificate(All Authors)</li>
-                                                                            </ul>
-                                                                        </td>
-                                                                        <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_JpkQFEvwU2gNfk" async> </script> </form></td>
-                                                                        <td class="text-center">
-                                                                            <select class="custom-select" id="payment_status_1">
-                                                                                @php
-                                                                                    if(!empty($rows[0]->payment_status)){
-                                                                                        if($method == 1){
-                                                                                            if($paymentstatus == 'paid'){
-                                                                                                echo '<option value="paid-1">Paid</option>';
-                                                                                            }else{
-                                                                                                echo '<option value="unpaid-1">Un Paid</option>';
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                @endphp
-                                                                                <option value=" "></option>
-                                                                                <option value="paid-1">Paid</option>
-                                                                                <option value="unpaid-1">Un paid</option>
-                                                                            </select>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td width="50%">For Indian Author</td>
-                                                                        <td>
-                                                                            <b>INR {{$payment_data['Indian']['IJRTMR']['withdoi']}}</b>
-                                                                            <ul>
-                                                                            <li>APC {{$gst}}% GST</li>
-                                                                                <li>With DOI(10.59256)</li>
-                                                                                <li>Online Publication</li>
-                                                                                <li>Max. 10 to 20 pages</li>
-                                                                                <li>E-Certificate(All Authors)</li>
-                                                                            </ul>
-                                                                        </td>
-                                                                        <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_M5Ez1eyaihQTLe" async> </script> </form></td>
-                                                                        <td class="text-center">
-                                                                            <select class="custom-select" id="payment_status_2">
-                                                                                @php
-                                                                                    if(!empty($rows[0]->payment_status)){
-                                                                                        if($method == 2){
-                                                                                            if($paymentstatus == 'paid'){
-                                                                                                echo '<option value="paid-1">Paid</option>';
-                                                                                            }else{
-                                                                                                echo '<option value="unpaid-1">Un Paid</option>';
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                @endphp
-                                                                                <option value=" "></option>
-                                                                                <option value="paid-2">Paid</option>
-                                                                                <option value="unpaid-2">Un paid</option>
-                                                                            </select>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td width="50%">For Foreign Author </td>
-                                                                        <td>
-                                                                            <b>USD {{$payment_data['Others']['IJRTMR']['withdoi']}}</b>
-                                                                            <ul>
-                                                                                <li>With DOI(10.59256)</li>
-                                                                                <li>Online Publication</li>
-                                                                                <li>Max. 10 to 20 pages</li>
-                                                                                <li>E-Certificate(All Authors)</li>
-                                                                            </ul>
-                                                                        </td>
-                                                                        <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Jpkf3lSqoVoUyG" async> </script> </form></td>
-                                                                        <td class="text-center">
-                                                                            <select class="custom-select" id="payment_status_3">
-                                                                                @php
-                                                                                    if(!empty($rows[0]->payment_status)){
-                                                                                        if($method == 3){
-                                                                                            if($paymentstatus == 'paid'){
-                                                                                                echo '<option value="paid-1">Paid</option>';
-                                                                                            }else{
-                                                                                                echo '<option value="unpaid-1">Un Paid</option>';
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                @endphp
-                                                                                <option value=" "></option>
-                                                                                <option value="paid-3">Paid</option>
-                                                                                <option value="unpaid-3">Un paid</option>
-                                                                            </select>
-                                                                        </td>
-                                                                    </tr>
+                switch ($i) {
+                    case 1:
+                        $amount = "INR " . $payment_data['Indian']['IJRTMR']['withoutdoi'];
+                        $details = [
+                            'APC ' . $gst . '% GST',
+                            'Without DOI',
+                            'Online Publication',
+                            'Max. 10 to 20 pages',
+                            'E-Certificate (All Authors)'
+                        ];
+                        $label = "For Indian Author";
+                        $buttonId = "pl_JpkQFEvwU2gNfk";
+                        break;
+                    case 2:
+                        $amount = "INR " . $payment_data['Indian']['IJRTMR']['withdoi'];
+                        $details = [
+                            'APC ' . $gst . '% GST',
+                            'With DOI (10.59256)',
+                            'Online Publication',
+                            'Max. 10 to 20 pages',
+                            'E-Certificate (All Authors)'
+                        ];
+                        $label = "For Indian Author";
+                        $buttonId = "pl_M5Ez1eyaihQTLe";
+                        break;
+                    case 3:
+                        $amount = "USD " . $payment_data['Others']['IJRTMR']['withdoi'];
+                        $details = [
+                            'With DOI (10.59256)',
+                            'Online Publication',
+                            'Max. 10 to 20 pages',
+                            'E-Certificate (All Authors)'
+                        ];
+                        $label = "For Foreign Author";
+                        $buttonId = "pl_Jpkf3lSqoVoUyG";
+                        break;
+                }
 
-                                                                </tbody>
-                                                            </table>
+                $statusBadge = '';
+                if (!empty($status)) {
+                    if ($paymentstatus == 'paid') {
+                        $statusBadge = '<span class="badge badge-pill" style="background-color:green; color:#ffffff;border:1px solid green">Paid</span>';
+                    } else {
+                        $statusBadge = '<span class="badge badge-pill" style="background-color:red; color:#ffffff;border:1px solid red">Un Paid</span>';
+                    }
+                }
+            @endphp
+
+            @if($show)
+                <div class="col-sm-6 col-lg-4 mb-4">
+                    <div class="card h-100 shadow border">
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div>
+                                <h5 class="card-title font-weight-bold text-primary text-center" style="color:#007bff !important">{{$rows[0]->journal_short_form}}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{$label}}</h6>
+                                <p><strong>{{$amount}}</strong></p>
+                                <ul class="mb-3">
+                                    @foreach($details as $detail)
+                                        <li>{{$detail}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="mb-2 d-flex justify-content-center align-content-center">
+                                <!-- <form>
+                                    <script src="https://checkout.razorpay.com/v1/payment-button.js"
+                                            data-payment_button_id="{{ $buttonId }}" async></script>
+                                </form> -->
+                                <a href="https://rzp.io/rzp/cgyflY4L"><button class="py-1 px-3 payment-btn" >Pay Now</button></a>
+                                </div>
+                                @if(!empty($status))
+                                    <div class="text-center">{!! $statusBadge !!}</div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endfor
+    @endforeach
+</div>
+
                                                             <div class="row">
                                                     <div class="col-md-12 col-sm-12">
                                                         <h4>Payment through Bank:</h4><br>
@@ -1777,117 +1718,101 @@ option[style*="display:none"] {
                                                     </div>
                                                 </div>
                                                             @elseif($rows[0]->journal_short_form == "INDJCST")
-                                                            <table class="table table-bordered table-hover sys_table">
+                                                            <div class="row">
+    @foreach([$rows[0]->payment_status] as $status) 
+        @for ($i = 1; $i <= 3; $i++)
+            @php
+                $show = true;
+                if (!empty($status)) {
+                    $show = $method == $i;
+                }
 
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th class="text-center">Journal</th>
-                                                                        <th>Author</th>
-                                                                        <th>Amount</th>
-                                                                        <th>Payment Method</th>
-                                                                        <th class="text-center">Status</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td rowspan="3" class="text-center">{{$rows[0]->journal_short_form}}</td>
-                                                                        <td width="50%">For Indian Author</td>
-                                                                        <td width="50%">
-                                                                            <b>INR {{$payment_data['Indian']['INDJCST']['withoutdoi']}}</b>
-                                                                            <ul>
-                                                                            <li>APC {{$gst}}% GST</li>
-                                                                                <li>Without DOI</li>
-                                                                                <li>Online Publication</li>
-                                                                                <li>Max. 10 to 20 pages</li>
-                                                                                <li>E-Certificate(All Authors)</li>
-                                                                            </ul>
-                                                                        </td>
-                                                                        <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_M5F85UY7YjjGuv" async> </script> </form></td>
-                                                                        <td class="text-center">
-                                                                            <select class="custom-select" id="payment_status_1">
-                                                                                @php
-                                                                                    if(!empty($rows[0]->payment_status)){
-                                                                                        if($method == 1){
-                                                                                            if($paymentstatus == 'paid'){
-                                                                                                echo '<option value="paid-1">Paid</option>';
-                                                                                            }else{
-                                                                                                echo '<option value="unpaid-1">Un Paid</option>';
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                @endphp
-                                                                                <option value=" "></option>
-                                                                                <option value="paid-1">Paid</option>
-                                                                                <option value="unpaid-1">Un paid</option>
-                                                                            </select>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td width="50%">For Indian Author</td>
-                                                                        <td>
-                                                                           <b>INR {{$payment_data['Indian']['INDJCST']['withdoi']}}</b>
-                                                                            <ul>
-                                                                            <li>APC {{$gst}}% GST</li>
-                                                                                <li>With DOI(10.59256)</li>
-                                                                                <li>Online Publication</li>
-                                                                                <li>Max. 10 to 20 pages</li>
-                                                                                <li>E-Certificate(All Authors)</li>
-                                                                            </ul>
-                                                                        </td>
-                                                                        <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_M5FAsn5wP7RItB" async> </script> </form></td>
-                                                                        <td class="text-center">
-                                                                            <select class="custom-select" id="payment_status_2">
-                                                                                @php
-                                                                                    if(!empty($rows[0]->payment_status)){
-                                                                                        if($method == 2){
-                                                                                            if($paymentstatus == 'paid'){
-                                                                                                echo '<option value="paid-1">Paid</option>';
-                                                                                            }else{
-                                                                                                echo '<option value="unpaid-1">Un Paid</option>';
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                @endphp
-                                                                                <option value=" "></option>
-                                                                                <option value="paid-2">Paid</option>
-                                                                                <option value="unpaid-2">Un paid</option>
-                                                                            </select>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td width="50%">For Foreign Author </td>
-                                                                        <td>
-                                                                            <b>USD {{$payment_data['Others']['INDJCST']['withdoi']}}</b>
-                                                                            <ul>
-                                                                                <li>With DOI(10.59256)</li>
-                                                                                <li>Online Publication</li>
-                                                                                <li>Max. 10 to 20 pages</li>
-                                                                                <li>E-Certificate(All Authors)</li>
-                                                                            </ul>
-                                                                        </td>
-                                                                        <td><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_M5FCQIre57PUpW" async> </script> </form></td>
-                                                                        <td class="text-center">
-                                                                            <select class="custom-select" id="payment_status_3">
-                                                                                @php
-                                                                                    if(!empty($rows[0]->payment_status)){
-                                                                                        if($method == 3){
-                                                                                            if($paymentstatus == 'paid'){
-                                                                                                echo '<option value="paid-1">Paid</option>';
-                                                                                            }else{
-                                                                                                echo '<option value="unpaid-1">Un Paid</option>';
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                @endphp
-                                                                                <option value=" "></option>
-                                                                                <option value="paid-3">Paid</option>
-                                                                                <option value="unpaid-3">Un paid</option>
-                                                                            </select>
-                                                                        </td>
-                                                                    </tr>
+                switch ($i) {
+                    case 1:
+                        $amount = "INR " . $payment_data['Indian']['INDJCST']['withoutdoi'];
+                        $details = [
+                            'APC ' . $gst . '% GST',
+                            'Without DOI',
+                            'Online Publication',
+                            'Max. 10 to 20 pages',
+                            'E-Certificate (All Authors)'
+                        ];
+                        $label = "For Indian Author";
+                        $buttonId = "pl_M5F85UY7YjjGuv";
+                        break;
 
-                                                                </tbody>
-                                                            </table>
+                    case 2:
+                        $amount = "INR " . $payment_data['Indian']['INDJCST']['withdoi'];
+                        $details = [
+                            'APC ' . $gst . '% GST',
+                            'With DOI (10.59256)',
+                            'Online Publication',
+                            'Max. 10 to 20 pages',
+                            'E-Certificate (All Authors)'
+                        ];
+                        $label = "For Indian Author";
+                        $buttonId = "pl_M5FAsn5wP7RItB";
+                        break;
+
+                    case 3:
+                        $amount = "USD " . $payment_data['Others']['INDJCST']['withdoi'];
+                        $details = [
+                            'With DOI (10.59256)',
+                            'Online Publication',
+                            'Max. 10 to 20 pages',
+                            'E-Certificate (All Authors)'
+                        ];
+                        $label = "For Foreign Author";
+                        $buttonId = "pl_M5FCQIre57PUpW";
+                        break;
+                }
+
+                $statusBadge = '';
+                if (!empty($status)) {
+                    if ($paymentstatus == 'paid') {
+                        $statusBadge = '<span class="badge badge-pill" style="background-color:green; color:white; border:1px solid green;">Paid</span>';
+                    } else {
+                        $statusBadge = '<span class="badge badge-pill" style="background-color:red; color:white; border:1px solid red;">Un Paid</span>';
+                    }
+                }
+            @endphp
+
+            @if($show)
+                <div class="col-sm-6 col-lg-4 mb-4">
+                    <div class="card h-100 shadow-sm border rounded">
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div>
+                                <h5 class="card-title text-center text-primary font-weight-bold">
+                                    {{$rows[0]->journal_short_form}}
+                                </h5>
+                                <h6 class="card-subtitle mb-2 text-muted text-center">{{$label}}</h6>
+                                <p class="text-center font-weight-bold">{{$amount}}</p>
+                                <ul class="pl-3 mb-3">
+                                    @foreach($details as $detail)
+                                        <li>{{$detail}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="mb-2 d-flex justify-content-center align-content-center">
+                                <!-- <form>
+                                    <script src="https://checkout.razorpay.com/v1/payment-button.js"
+                                            data-payment_button_id="{{ $buttonId }}" async></script>
+                                </form> -->
+                                    <a href="https://rzp.io/rzp/cgyflY4L"><button class="py-1 px-3 payment-btn" >Pay Now</button></a>
+                                </div>
+                                @if(!empty($status))
+                                    <div class="mt-2">{!! $statusBadge !!}</div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endfor
+    @endforeach
+</div>
+
                                                             <div class="row">
                                                     <div class="col-md-12 col-sm-12">
                                                         <h4>Payment through Bank:</h4><br>
