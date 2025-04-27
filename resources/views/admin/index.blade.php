@@ -150,7 +150,7 @@ td, th {
                 </div>
                 <div class="ibox-content">
 
-                    <div class="table-responsive">
+                    <div class="table-responsive" style="overflow-x: auto;">
                         <table class="table table-bordered table-hover sys_table">
                         <thead>
                             <tr style='background-color:#A9A9A9'>
@@ -430,7 +430,7 @@ td, th {
 
  
                   <!-- Data Table Start -->
-                  <div class="ibox-content">
+                  <div class="ibox-content" style="overflow-x: auto;">
                     <table class="table table-hover table-vcenter">
                         <thead>
                             <tr>
@@ -614,7 +614,7 @@ td, th {
                 </div>
                 <div class="ibox-content">
 
-                    <div class="table-responsive">
+                    <div class="table-responsive" style="overflow-x: auto;">
                         <table class="table table-bordered table-hover sys_table">
                             <thead>
                                 <tr>

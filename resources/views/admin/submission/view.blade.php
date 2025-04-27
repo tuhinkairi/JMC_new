@@ -531,7 +531,7 @@ option[style*="display:none"] {
                                                     <div class="col-lg-5">
                                                         <h4>All Tasks</h4>
                                                         <hr>
-                                                        <div class="">
+                                                        <div class="" style="overflow-x: auto;">
                                                             <table class="table table-bordered table-hover sys_table">
                                                                 <thead>
                                                                     <tr>
@@ -738,7 +738,7 @@ option[style*="display:none"] {
                                                 <div class="row">
                                                     <div class="col-md-12 col-sm-12">
                                                         <hr>
-                                                        <div class="">
+                                                        <div class="" style="overflow-x: auto;">
                                                             <table class="table table-bordered table-hover sys_table">
                                                                 <thead>
                                                                     <tr>
@@ -839,7 +839,7 @@ option[style*="display:none"] {
                                                 <div class="row">
                                                     <div class="col-md-12 col-sm-12">
                                                         <hr>
-                                                        <div class="">
+                                                        <div class="" style="overflow-x: auto;">
                                                             <table class="table table-bordered table-hover sys_table">
                                                                 <thead>
                                                                     <tr>
@@ -927,7 +927,7 @@ option[style*="display:none"] {
                                                 <div class="row">
                                                     <div class="col-md-12 col-sm-12">
                                                         <hr>
-                                                        <div class="">
+                                                        <div class="" style="overflow-x: auto;">
                                                             <table class="table table-bordered table-hover sys_table">
                                                                 <thead>
                                                                     <tr>
@@ -1016,7 +1016,7 @@ option[style*="display:none"] {
                                                 <div class="row">
                                                     <div class="col-md-12 col-sm-12">
                                                         <hr>
-                                                        <div class="">
+                                                        <div class="" style="overflow-x: auto;">
                                                             <table class="table table-bordered table-hover sys_table">
                                                                 <thead>
                                                                     <tr>
@@ -1385,7 +1385,7 @@ option[style*="display:none"] {
                                                     </div> --}}
                                                     <h4>Generate the Copyright Form</h4>
                                                     <div class="row">
-                                                        <div class="col-md-12 col-sm-12">
+                                                        <div class="col-md-12 col-sm-12" style="overflow-x: auto;">
                                                             <table class="table table-bordered table-hover sys_table">
                                                                 <thead>
                                                                     <tr>
@@ -1878,7 +1878,7 @@ option[style*="display:none"] {
 
                                                 <div class="row">
                                                     <div class="col-md-12 col-sm-12">
-                                                        <div class="">
+                                                        <div class="" style="overflow-x: auto;">
                                                             <table class="table table-bordered table-hover sys_table">
 
                                                                 <thead>
@@ -1951,7 +1951,7 @@ option[style*="display:none"] {
 
                                                 <div class="row">
                                                     <div class="col-md-12 col-sm-12">
-                                                        <div class="">
+                                                        <div class="" style="overflow-x: auto;">
                                                             <table class="table table-bordered table-hover sys_table">
                                                                 <thead>
                                                                     <tr>
@@ -2022,7 +2022,7 @@ option[style*="display:none"] {
 
                                                 <div class="row">
                                                     <div class="col-md-12 col-sm-12">
-                                                        <div class="">
+                                                        <div class="" style="overflow-x: auto;">
                                                             <table class="table table-bordered table-hover sys_table">
                                                                 <thead>
                                                                     <tr>
