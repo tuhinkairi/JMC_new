@@ -277,13 +277,12 @@ td, th {
                                 <tr>
                                     <th class="hide-column">No</th>
                                     <th class="id_box" style="min-width: 125px;">ID</th>
-                                    <th class="title_box text-center" style="min-width: 150px;">Title</th><!-- Increased width -->
-
-                                    <th class="text-left text-center" style="min-width: 100px;">Mode</th>
-                                    <th class="author_box text-center" style="min-width: 100px;">Author</th> <!-- Adjusted width -->
-                                    <th class="satus_box text-center" style="min-width: 50px;">Status</th> <!-- Adjusted width -->
-                                    <th class="paymeny_box text-center" style="min-width: 50px;">Payment</th> <!-- Adjusted width -->
-                                    <th class="created_box text-center" style="min-width: 100px;">Created On</th> <!-- Adjusted width -->
+                                    <th class="title_box text-center" style="min-width: 150px; max-width: 250px;">Title</th><!-- Increased width -->
+                                    <th class="text-left text-center" style="min-width: 100px; max-width: 200px;">Mode</th>
+                                    <th class="author_box text-center" style="min-width: 100px; max-width: 200px;">Author</th> <!-- Adjusted width -->
+                                    <th class="satus_box text-center" style="min-width: 50px; max-width: 100px;">Status</th> <!-- Adjusted width -->
+                                    <th class="paymeny_box text-center" style="min-width: 50px; max-width: 100px;">Payment</th> <!-- Adjusted width -->
+                                    <th class="created_box text-center" style="min-width: 100px; max-width: 200px;">Created On</th> <!-- Adjusted width -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -294,7 +293,7 @@ td, th {
                                 <tr>
                                     <td class="hide-column text-center">{{ $count++ }}</td>
                                     <td class="id_box text-center" style="width: 150px;"><a href="{{url('dashboard/admin/submission/show/'.$row->id)}}">{{$row->journal_short_form}}-0000{{ $row->id }}</a></td>
-                                    <td class="small-td text-center title_box">{{ $row->title }}</td> <!-- Increased width -->
+                                    <td class="small-td text-center title_box" style="min-width: 150px; max-width: 250px;">{{ $row->title }}</td> <!-- Increased width -->
                                     <!-- <td class="small-td text-left" style="width: 50px;"><i class="fas fa-walking"></i></td> -->
                                     
                                         @if($row->processing_type == 1)
@@ -307,9 +306,9 @@ td, th {
                                     
                                     
                                     
-                                    <td class="author_box text-center" >{{ $row->authorname }}</td> <!-- Adjusted width -->
-                                    <td class="satus_box text-center" ><span class="badge badge-pill" style="background-color:{{$row->colourflag}}; color:#ffffff;border:1px solid {{$row->colourflag}}">{{$row->statusname}}</span></td>
-                                    <td class="paymeny_box text-center" style="width: 50px;">
+                                    <td class="author_box text-center" style="min-width: 100px; max-width: 200px;">{{ $row->authorname }}</td> <!-- Adjusted width -->
+                                    <td class="satus_box text-center" style="min-width: 50px; max-width: 100px;"><span class="badge badge-pill" style="background-color:{{$row->colourflag}}; color:#ffffff;border:1px solid {{$row->colourflag}}">{{$row->statusname}}</span></td>
+                                    <td class="paymeny_box text-center" style="min-width: 50px; max-width: 100px;">
                                         @php
                                             if(!empty($row->payment_status)){
                                                 $data = $row->payment_status;
@@ -327,7 +326,7 @@ td, th {
                                             <span class="badge badge-pill" style="background-color:blue; color:#ffffff;border:1px solid blue">Not Started</span>
                                         @endif
                                     </td>
-                                    <td class="created_box text-center" style="width: 100px;">{{ $row->created_at }}</td> <!-- Adjusted width -->
+                                    <td class="created_box text-center" style="min-width: 100px; max-width: 200px;">{{ $row->created_at }}</td> <!-- Adjusted width -->
                                 </tr>
                                 @endforeach
                             </tbody>
