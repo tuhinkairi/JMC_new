@@ -622,7 +622,7 @@
                                     </form>
                                 </div>
 
-                                <div class="col-lg-5">
+                                <div class="col-lg-5 col-sm-8">
                                     <h4>All Tasks</h4>
                                     <hr>
                                     <div class="" style="overflow-x: auto;">
@@ -665,7 +665,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-3">
+                                <div class="col-lg-3 col-sm-4">
                                     <h4>Task Overview</h4>
                                     <p>1. Editorial check</p>
                                     <p>2. Plagiarism Check</p>
@@ -2603,6 +2603,7 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            color: white;
         }
 
         .loading-spinner {
