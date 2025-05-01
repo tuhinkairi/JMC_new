@@ -2653,7 +2653,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jkanban@1.3.1/dist/jkanban.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
+    <!-- <script>
         function handelSubmit(event) {
             // Show the loading screen
             document.getElementById('loading-screen').style.display = 'flex';
@@ -2671,7 +2671,62 @@
             document.getElementById('loading-screen').style.display = 'flex';
         });
 
-    </script>
+    </script> -->
+    <script>
+    // Initial Setup
+    function hideLoading() {
+        document.getElementById('loading-screen').style.display = 'none';
+    }
+
+    function showLoading() {
+        document.getElementById('loading-screen').style.display = 'flex';
+    }
+
+    // Enhance pushState/replaceState to detect route changes
+    (function(history) {
+        const pushState = history.pushState;
+        const replaceState = history.replaceState;
+
+        history.pushState = function(state) {
+            const result = pushState.apply(history, arguments);
+            window.dispatchEvent(new Event('locationchange'));
+            return result;
+        };
+
+        history.replaceState = function(state) {
+            const result = replaceState.apply(history, arguments);
+            window.dispatchEvent(new Event('locationchange'));
+            return result;
+        };
+    })(window.history);
+
+    // Catch browser navigation events
+    window.addEventListener('popstate', () => {
+        window.dispatchEvent(new Event('locationchange'));
+    });
+
+    // On load, ensure loading is hidden
+    window.addEventListener('DOMContentLoaded', () => {
+        hideLoading();
+    });
+
+    // Handle form submit (show loading)
+    function handelSubmit(event) {
+        showLoading();
+        return true; // let form submit
+    }
+
+    // Show loading on unload
+    window.addEventListener('beforeunload', () => {
+        showLoading();
+    });
+
+    // Hide loading after URL change (endpoint change)
+    window.addEventListener('locationchange', () => {
+        hideLoading(); // Triggered after push/replace/pop
+    });
+</script>
+
     <script>
 
         var kanbanBoards = document.querySelectorAll('.kanban-column-cards');
