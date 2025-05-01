@@ -3158,11 +3158,10 @@
                     targetTab.tab('show');
                 }
             }
+        });
             function godefault(){
-                console.log("defauleasdfa")
                 localStorage.setItem("activeNavTab", "#default");
             }
-        });
     </script>
 
 @endsection
