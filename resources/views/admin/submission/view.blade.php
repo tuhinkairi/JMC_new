@@ -54,7 +54,6 @@
             box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             min-width: 140px;
-            max-width: 140px;
             text-align: center;
         }
 
@@ -157,8 +156,8 @@
         }
     </style>
 
-    <div class="row">
-        <div class="col-xl-12 col-lg-12">
+    <div class="row ">
+        <div class="col-xl-12 col-lg-12 position-relative">
             <div class="card-body p-0">
                 <div class="px-3 pt-3">
                     <div class="card">
@@ -172,8 +171,9 @@
                                     <span class="close-btn" onclick="closeAlertModal()">&times;</span>
                                     <p id="alert-message"></p>
                                 </div>
-                                <form onsubmit="handelSubmit(event)" action="{{ URL::route($url . '.update', $rows[0]->id) }}"
-                                    method="post" enctype="multipart/form-data">
+                                <form onsubmit="handelSubmit(event)"
+                                    action="{{ URL::route($url . '.update', $rows[0]->id) }}" method="post"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <div class="ibox-content">
@@ -234,7 +234,7 @@
 
 
                                                 @if($previous_id !== null)
-                                                    <li class="nav-item">
+                                                    <li class="nav-item" onclick="godefault()">
                                                         <a class="nav-link"
                                                             href="{{ url('dashboard/admin/submission/show/' . $previous_id) }}"><i
                                                                 class="fas fa-chevron-left"></i> Previous</a>
@@ -244,7 +244,7 @@
 
 
                                                 @if($next_id !== null)
-                                                    <li class="nav-item ">
+                                                    <li class="nav-item " onclick="godefault()">
                                                         <a class="nav-link"
                                                             href="{{ url('dashboard/admin/submission/show/' . $next_id) }}"><i
                                                                 class="fas fa-chevron-right"></i> Next</a>
@@ -366,7 +366,8 @@
                                                                             @endif
                                                                             @foreach($articles as $article)
                                                                                 <option value="{{ $article->id }}">
-                                                                                    {{ $article->name }}</option>
+                                                                                    {{ $article->name }}
+                                                                                </option>
                                                                             @endforeach
                                                                         </select>
 
@@ -391,7 +392,8 @@
                                                                             @endif
                                                                             @foreach($issues as $issue)
                                                                                 <option value="{{ $issue->id }}">
-                                                                                    {{ $issue->name }}</option>
+                                                                                    {{ $issue->name }}
+                                                                                </option>
                                                                             @endforeach
                                                                         </select>
 
@@ -418,7 +420,8 @@
                                                                             @endif
                                                                             @foreach($processings as $processing)
                                                                                 <option value="{{ $processing->id }}">
-                                                                                    {{ $processing->name }}</option>
+                                                                                    {{ $processing->name }}
+                                                                                </option>
                                                                             @endforeach
                                                                         </select>
 
@@ -452,7 +455,8 @@
                                                                                                                                                                                                                     </option>
                                                                                                                                                 @else
                                                                                                                                                     <option value="{{ $status->id }}">
-                                                                                                                                                        {{ $status->name }}</option>
+                                                                                                                                                        {{ $status->name }}
+                                                                                                                                                    </option>
                                                                                                                                                 @endif
 
                                                                             @endforeach
@@ -584,9 +588,9 @@
                                         @csrf
                                         @method('PUT')
                                         <!-- <div class="form-group">
-                                                                    <label for="task">Task:</label>
-                                                                    <input type="text" class="form-control" name="task_name" id="task_name" placeholder="Task Name" required>
-                                                                </div> -->
+                                                                        <label for="task">Task:</label>
+                                                                        <input type="text" class="form-control" name="task_name" id="task_name" placeholder="Task Name" required>
+                                                                    </div> -->
 
                                         <div class="form-group">
                                             <label for="task">Task:</label>
@@ -678,8 +682,8 @@
 
 
                             </div>
-                            <div class="kanban-board " style="overflow-x: auto;">
-                                <div class="kanban-column" data-column-name="Not Started">
+                            <div class="kanban-board" style="overflow-x: auto;">
+                                <div class="kanban-column" style="width:20%" data-column-name="Not Started">
                                     <div class="kanban-column-header-not-started">Not Started</div>
                                     <div class="kanban-column-cards">
                                         @foreach($tasks as $task)
@@ -690,7 +694,8 @@
                                                     <div class="kanban-card-description"> Author : {{ $author[0]->authorname }}
                                                     </div>
                                                     <div class="kanban-card-description">ID :
-                                                        {{$rows[0]->journal_short_form}}-0000{{ $rows[0]->id }}</div>
+                                                        {{$rows[0]->journal_short_form}}-0000{{ $rows[0]->id }}
+                                                    </div>
                                                     @if (isset($task->image_path))
                                                         <div class="kanban-card-description">Staff : <img
                                                                 src="{{ asset('/uploads/profile/' . $task->image_path) }}"
@@ -708,7 +713,7 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="kanban-column" data-column-name="In progress">
+                                <div class="kanban-column" style="width:20%" data-column-name="In progress">
                                     <div class="kanban-column-header-in-progress">In progress</div>
                                     <div class="kanban-column-cards">
                                         @foreach($tasks as $task)
@@ -719,7 +724,8 @@
                                                     <div class="kanban-card-description"> Author : {{ $author[0]->authorname }}
                                                     </div>
                                                     <div class="kanban-card-description">ID :
-                                                        {{$rows[0]->journal_short_form}}-0000{{ $rows[0]->id }}</div>
+                                                        {{$rows[0]->journal_short_form}}-0000{{ $rows[0]->id }}
+                                                    </div>
                                                     @if (isset($task->image_path))
                                                         <div class="kanban-card-description">Staff : <img
                                                                 src="{{ asset('/uploads/profile/' . $task->image_path) }}"
@@ -737,7 +743,7 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="kanban-column" data-column-name="Completed">
+                                <div class="kanban-column" style="width:20%" data-column-name="Completed">
                                     <div class="kanban-column-header-completed">Completed</div>
                                     <div class="kanban-column-cards">
                                         @foreach($tasks as $task)
@@ -748,7 +754,8 @@
                                                     <div class="kanban-card-description"> Author : {{ $author[0]->authorname }}
                                                     </div>
                                                     <div class="kanban-card-description">ID :
-                                                        {{$rows[0]->journal_short_form}}-0000{{ $rows[0]->id }}</div>
+                                                        {{$rows[0]->journal_short_form}}-0000{{ $rows[0]->id }}
+                                                    </div>
                                                     @if (isset($task->image_path))
                                                         <div class="kanban-card-description">Staff : <img
                                                                 src="{{ asset('/uploads/profile/' . $task->image_path) }}"
@@ -766,7 +773,7 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="kanban-column" data-column-name="Deferred">
+                                <div class="kanban-column" style="width:20%" data-column-name="Deferred">
                                     <div class="kanban-column-header-deferred">Deferred</div>
                                     <div class="kanban-column-cards">
                                         @foreach($tasks as $task)
@@ -777,7 +784,8 @@
                                                     <div class="kanban-card-description"> Author : {{ $author[0]->authorname }}
                                                     </div>
                                                     <div class="kanban-card-description">ID :
-                                                        {{$rows[0]->journal_short_form}}-0000{{ $rows[0]->id }}</div>
+                                                        {{$rows[0]->journal_short_form}}-0000{{ $rows[0]->id }}
+                                                    </div>
                                                     @if (isset($task->image_path))
                                                         <div class="kanban-card-description">Staff : <img
                                                                 src="{{ asset('/uploads/profile/' . $task->image_path) }}"
@@ -795,7 +803,7 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="kanban-column" data-column-name="Editor approval">
+                                <div class="kanban-column" style="width:20%" data-column-name="Editor approval">
                                     <div class="kanban-column-header-editor-approval">Editor approval</div>
                                     <div class="kanban-column-cards">
                                         @foreach($tasks as $task)
@@ -806,7 +814,8 @@
                                                     <div class="kanban-card-description"> Author : {{ $author[0]->authorname }}
                                                     </div>
                                                     <div class="kanban-card-description">ID :
-                                                        {{$rows[0]->journal_short_form}}-0000{{ $rows[0]->id }}</div>
+                                                        {{$rows[0]->journal_short_form}}-0000{{ $rows[0]->id }}
+                                                    </div>
                                                     @if (isset($task->image_path))
                                                         <div class="kanban-card-description">Staff : <img
                                                                 src="{{ asset('/uploads/profile/' . $task->image_path) }}"
@@ -1354,7 +1363,8 @@
                                                                                                                                                                                                                     <select class="custom-select review_decision"
                                                                                                                                                                                                                         id="review_decision_{{ $review->id }}">
                                                                                                                                                                                                                         <option value="{{ $review->decision }}" selected>
-                                                                                                                                                                                                                            {{ $review->decision }}</option>
+                                                                                                                                                                                                                            {{ $review->decision }}
+                                                                                                                                                                                                                        </option>
                                                                                                                                                                                                                         <option value="Not Complete">Not Complete</option>
                                                                                                                                                                                                                         <option value="view">View</option>
                                                                                                                                                                                                                     </select>
@@ -1370,7 +1380,8 @@
                                                                                                                                                 <select class="custom-select review_decision"
                                                                                                                                                     id="review_decision_{{ $review->id }}">
                                                                                                                                                     <option value="{{ $review->decision }}" selected>
-                                                                                                                                                        {{ $review->decision }}</option>
+                                                                                                                                                        {{ $review->decision }}
+                                                                                                                                                    </option>
                                                                                                                                                     <option value="Not Complete">Not Complete</option>
                                                                                                                                                     <option value="view">View</option>
                                                                                                                                                 </select>
@@ -1384,7 +1395,8 @@
                                                                                                     <select class="custom-select review_decision"
                                                                                                         id="review_decision_{{ $review->id }}">
                                                                                                         <option value="{{ $review->decision }}" selected>
-                                                                                                            {{ $review->decision }}</option>
+                                                                                                            {{ $review->decision }}
+                                                                                                        </option>
                                                                                                         <option value="Not Complete">Not Complete</option>
                                                                                                         <option value="view">View</option>
                                                                                                     </select>
@@ -1591,7 +1603,8 @@
                                                         <td>
                                                             <select class="custom-select" id="acceptance_status">
                                                                 <option value="{{$acceptance->status}}" selected>
-                                                                    {{$acceptance->status}}</option>
+                                                                    {{$acceptance->status}}
+                                                                </option>
                                                                 <option value="Draft">Draft</option>
                                                                 <option value="Accepted">Accepted</option>
                                                                 <option value="Declined">Declined</option>
@@ -1611,7 +1624,8 @@
                                                             <select class="custom-select" id="acceptance_action">
                                                                 @if($acceptance->action_for_author)
                                                                     <option value="{{$acceptance->action_for_author }}" selected>
-                                                                        {{$acceptance->action_for_author }}</option>
+                                                                        {{$acceptance->action_for_author }}
+                                                                    </option>
 
                                                                 @else
                                                                     <option value="">Select </option>
@@ -1656,7 +1670,8 @@
                                             </thead>
                                             <tbody>
                                                 <td class="text-center">
-                                                    {{$rows[0]->journal_short_form}}-0000{{ $rows[0]->id }}</td>
+                                                    {{$rows[0]->journal_short_form}}-0000{{ $rows[0]->id }}
+                                                </td>
                                                 <td width="65%">{{$rows[0]->title}}</td>
                                                 <td class="text-center"><a
                                                         href="{{url('dashboard/admin/submission/copyright_form/' . $rows[0]->id)}}"
@@ -1848,7 +1863,8 @@
                                                                                     <tbody>
                                                                                         <tr>
                                                                                             <td rowspan="3" style="text-align: center;text-align: center;">
-                                                                                                {{$rows[0]->journal_short_form}}</td>
+                                                                                                {{$rows[0]->journal_short_form}}
+                                                                                            </td>
                                                                                             <td width="50%">For Indian Author</td>
                                                                                             <td width="50%">
                                                                                                 <b>INR {{$payment_data['Indian']['IJSREAT']['withoutdoi']}}</b>
@@ -2586,13 +2602,19 @@
 
         </div>
     </div>
+    <!-- loading screen -->
+    <div id="loading-screen" style="display: flex;">
+        <div class="loading-spinner"></div>
+        <p>Loading...</p>
     </div>
+</div>
+</div>
     </div>
     </div>
     <style>
         #loading-screen {
             position: fixed;
-            z-index: 9999;
+            z-index: 100;
             backdrop-filter: blur(5px);
             top: 0;
             left: 0;
@@ -2625,11 +2647,7 @@
             }
         }
     </style>
-    <div id="loading-screen" style="display: flex;">
-        <div class="loading-spinner"></div>
-        <p>Loading...</p>
-    </div>
-    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
@@ -2640,8 +2658,8 @@
             // Show the loading screen
             document.getElementById('loading-screen').style.display = 'flex';
             window.addEventListener('DOMContentLoaded', function (event) {
-            document.getElementById('loading-screen').style.display = 'none';
-        });
+                document.getElementById('loading-screen').style.display = 'none';
+            });
             // Let the form submit normally
             return true;
         }
@@ -2652,7 +2670,7 @@
         window.addEventListener('beforeunload', function (event) {
             document.getElementById('loading-screen').style.display = 'flex';
         });
-       
+
     </script>
     <script>
 
@@ -2878,6 +2896,29 @@
                 }
             })
         });
+// $('#scheduled_on').on('change', function () {
+//     let val = $(this).val();
+//     var id_value = {!! json_encode($id) !!};
+
+//     $.ajax({
+//         method: 'POST',
+//         url: '{{ URL::to('/dashboard/admin/submission/journal_ajax') }}',
+//         data: {
+//             _token: "{{ csrf_token() }}",
+//             scheduled_on: val,
+//             id: id_value
+//         },
+//         success: function (data) {
+//             refreshPage();
+//             showAlertModal(data);
+//         },
+//         error: function () {
+//             sweet_alert("Something went Wrong!!!", "error");
+//         }
+//     });
+//     $('p strong:contains("Published on:")').parent().html(`<strong>Published on:</strong> ${val}`);
+
+// });
 
 
         // $('#accept_save').on('click', function(){
@@ -3117,7 +3158,11 @@
                     targetTab.tab('show');
                 }
             }
+            function godefault(){
+                console.log("defauleasdfa")
+                localStorage.setItem("activeNavTab", "#default");
+            }
         });
     </script>
-    
+
 @endsection
