@@ -333,7 +333,7 @@
                                                                     style="margin-bottom: 10px;">
                                                                     <p class="mb-0">
                                                                         <strong>Reviewer Referral ID</strong>:
-                                                                        <span class="label label-primary" id='scheduled_on'
+                                                                        <span class="label label-primary" id='scheduled_on1'
                                                                             style="">{{$rows[0]->ref_id}}</span>
                                                                     </p>
                                                                 </div>
@@ -2604,7 +2604,8 @@
     </div>
     <!-- loading screen -->
     <div id="loading-screen" style="display: flex;">
-        <div class="loading-spinner"></div>
+        <img src="https://media.tenor.com/guhB4PpjrmUAAAAC/loading-loading-gif.gif" alt="">
+        <!-- <div class="loading-spinner"></div> -->
         <p>Loading...</p>
     </div>
 </div>
@@ -2933,9 +2934,10 @@
             })
         });
 
-        $('#scheduled_on').on('blur', function () {
+        $('#scheduled_on').change(function () {
             let val = $(this).val();
             var id_value = <?php echo $id ?>;
+            console.log("running")
             $.ajax({
                 method: 'POST',
                 url: '{{URL::to('/dashboard/admin/submission/journal_ajax')}}',
